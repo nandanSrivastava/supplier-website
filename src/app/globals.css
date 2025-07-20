@@ -3,24 +3,581 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --secondary: #64748b;
+  --accent: #f59e0b;
+  --success: #10b981;
+  --error: #ef4444;
+  --warning: #f59e0b;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Prevent any element from exceeding viewport width */
+*,
+*::before,
+*::after {
+  max-width: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Account for fixed header */
+  /* Prevent horizontal overflow */
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  /* Ensure minimum width for content */
+  min-width: 320px;
+  width: 100%;
+  /* Prevent text from breaking layout on very small screens */
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Ensure all sections and divs don't exceed viewport */
+section, div, main, header, footer, nav, article, aside {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Responsive utilities */
+.container-responsive {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  box-sizing: border-box;
+}
+
+@media (min-width: 375px) {
+  .container-responsive {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+}
+
+/* XS breakpoint improvements for Hero section */
+@media (min-width: 320px) and (max-width: 479px) {
+  .hero-section {
+    padding: 0.25rem;
+  }
+  
+  .hero-section h1 {
+    line-height: 1.3;
+    word-spacing: -0.1em;
+  }
+  
+  .hero-section .btn-primary {
+    font-size: 0.8rem;
+    padding: 0.6rem 1rem;
+  }
+}
+
+@media (min-width: 480px) {
+  .container-responsive {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .container-responsive {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-responsive {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Additional responsive helpers */
+.w-full {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.max-w-full {
+  max-width: 100% !important;
+}
+
+/* Strict width constraints for common max-width classes */
+.max-w-sm { max-width: min(24rem, calc(100vw - 2rem)) !important; }
+.max-w-md { max-width: min(28rem, calc(100vw - 2rem)) !important; }
+.max-w-lg { max-width: min(32rem, calc(100vw - 2rem)) !important; }
+.max-w-xl { max-width: min(36rem, calc(100vw - 2rem)) !important; }
+.max-w-2xl { max-width: min(42rem, calc(100vw - 2rem)) !important; }
+.max-w-3xl { max-width: min(48rem, calc(100vw - 2rem)) !important; }
+.max-w-4xl { max-width: min(56rem, calc(100vw - 2rem)) !important; }
+.max-w-5xl { max-width: min(64rem, calc(100vw - 2rem)) !important; }
+.max-w-6xl { max-width: min(72rem, calc(100vw - 2rem)) !important; }
+.max-w-7xl { max-width: min(80rem, calc(100vw - 2rem)) !important; }
+
+/* Ensure images and media are responsive */
+img, video, canvas, audio, iframe, embed, object {
+  max-width: 100%;
+  height: auto;
+  box-sizing: border-box;
+}
+
+/* Prevent tables from breaking layout */
+table {
+  width: 100%;
+  max-width: 100%;
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+/* Force flex items to respect container width */
+.flex > *, .flex-col > * {
+  min-width: 0;
+  flex-shrink: 1;
+}
+
+/* Ensure grid items don't overflow */
+.grid > * {
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* Animation classes */
+.fade-in {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom button hover effects */
+.btn-hover {
+  transition: all 0.3s ease;
+}
+
+.btn-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* Loading states */
+.loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Industrial theme adjustments */
+.industrial-bg {
+  background-image: 
+    linear-gradient(45deg, #64748b 25%, transparent 25%), 
+    linear-gradient(-45deg, #64748b 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, #64748b 75%), 
+    linear-gradient(-45deg, transparent 75%, #64748b 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  opacity: 0.1;
+}
+
+/* Focus styles for accessibility */
+.focus-ring:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Mobile-first responsive text */
+.text-responsive-xs { font-size: 0.875rem; }
+.text-responsive-sm { font-size: 1rem; }
+
+/* Additional responsive utilities for better screen fitting */
+@media screen and (max-width: 480px) {
+  /* Extra small screens - ensure content fits */
+  .container-responsive {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  
+  /* Reduce spacing on very small screens */
+  .space-y-4 > * + * { margin-top: 1rem; }
+  .space-y-6 > * + * { margin-top: 1.5rem; }
+  .space-y-8 > * + * { margin-top: 2rem; }
+  
+  /* Ensure buttons don't exceed screen width */
+  button, .btn {
+    max-width: 100%;
+    min-width: auto;
+  }
+  
+  /* Hero specific optimizations */
+  .hero-section {
+    min-height: 100vh;
+    min-height: 100dvh; /* Dynamic viewport height for mobile */
+  }
+  
+  /* Ensure background images scale properly */
+  [style*="background-image"] {
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: scroll !important; /* Better mobile performance */
+  }
+}
+
+@media screen and (max-width: 360px) {
+  /* Very small screens like older phones */
+  .container-responsive {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+  
+  /* Further reduce font sizes if needed */
+  h1 { 
+    font-size: 1.125rem !important;
+    line-height: 1.4 !important;
+  }
+  h2 { font-size: 1rem !important; }
+  h3 { font-size: 0.9rem !important; }
+  
+  /* Ensure text doesn't break layout */
+  .hero-section h1 {
+    font-size: 1rem !important;
+    line-height: 1.3 !important;
+    word-break: break-word;
+    hyphens: auto;
+  }
+  
+  .hero-section p {
+    font-size: 0.75rem !important;
+    line-height: 1.4 !important;
+  }
+  
+  /* Reduce button padding on very small screens */
+  .btn-primary {
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.75rem !important;
+  }
+}
+
+/* Landscape mobile orientation */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .min-h-screen {
+    min-height: 100vh;
+  }
+  
+  /* Reduce vertical spacing in landscape */
+  .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+  .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+}
+
+/* High DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  /* Ensure crisp rendering on high DPI displays */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Emergency viewport constraints - prevents any overflow */
+* {
+  max-width: 100vw !important;
+}
+
+/* Specific overrides for common problematic elements */
+.max-w-7xl { max-width: min(80rem, 95vw) !important; }
+.max-w-6xl { max-width: min(72rem, 95vw) !important; }
+.max-w-5xl { max-width: min(64rem, 95vw) !important; }
+.max-w-4xl { max-width: min(56rem, 95vw) !important; }
+
+/* Force all text to wrap */
+* {
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+}
+
+/* Ensure no element has fixed width that exceeds viewport */
+[style*="width"] {
+  max-width: 100% !important;
+}
+
+/* Grid and flex emergency constraints */
+.grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)) !important;
+}
+
+.flex {
+  flex-wrap: wrap !important;
+}
+
+/* Button and form constraints */
+button, input, select, textarea {
+  max-width: 100% !important;
+  min-width: 0 !important;
+}
+
+/* Image and media final safety net */
+img, video, iframe, embed, object, svg {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* ===========================================
+   SPA SECTION STYLES (merged from spa-styles.css)
+   =========================================== */
+
+/* SPA Section Styles */
+.section-container {
+  position: relative;
+  scroll-margin-top: 80px; /* Account for fixed header */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* Ensure sections don't overflow horizontally */
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.section-container:not(#home) {
+  padding-top: 2rem;
+}
+
+/* Responsive section padding */
+@media screen and (max-width: 640px) {
+  .section-container:not(#home) {
+    padding-top: 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .section-container:not(#home) {
+    padding-top: 0.5rem;
+  }
+}
+
+/* Smooth section transitions */
+.section-fade-in {
+  animation: sectionFadeIn 0.6s ease-out forwards;
+}
+
+@keyframes sectionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Navigation indicator */
+.nav-indicator {
+  position: relative;
+}
+
+.nav-indicator::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.nav-indicator.active::after {
+  width: 100%;
+}
+.text-responsive-base { font-size: 1.125rem; }
+.text-responsive-lg { font-size: 1.25rem; }
+.text-responsive-xl { font-size: 1.5rem; }
+.text-responsive-2xl { font-size: 2rem; }
+.text-responsive-3xl { font-size: 2.5rem; }
+
+@media (min-width: 640px) {
+  .text-responsive-xs { font-size: 1rem; }
+  .text-responsive-sm { font-size: 1.125rem; }
+  .text-responsive-base { font-size: 1.25rem; }
+  .text-responsive-lg { font-size: 1.5rem; }
+  .text-responsive-xl { font-size: 1.875rem; }
+  .text-responsive-2xl { font-size: 2.25rem; }
+  .text-responsive-3xl { font-size: 3rem; }
+}
+
+@media (min-width: 1024px) {
+  .text-responsive-xs { font-size: 1.125rem; }
+  .text-responsive-sm { font-size: 1.25rem; }
+  .text-responsive-base { font-size: 1.5rem; }
+  .text-responsive-lg { font-size: 1.875rem; }
+  .text-responsive-xl { font-size: 2.25rem; }
+  .text-responsive-2xl { font-size: 3rem; }
+  .text-responsive-3xl { font-size: 4rem; }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Animation classes */
+.fade-in {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom button hover effects */
+.btn-hover {
+  transition: all 0.3s ease;
+}
+
+.btn-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Industrial theme adjustments */
+.industrial-bg {
+  background-image: 
+    linear-gradient(45deg, #64748b 25%, transparent 25%), 
+    linear-gradient(-45deg, #64748b 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, #64748b 75%), 
+    linear-gradient(-45deg, transparent 75%, #64748b 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  opacity: 0.1;
 }
