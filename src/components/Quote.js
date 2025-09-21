@@ -1,70 +1,102 @@
-'use client';
+"use client";
 
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback } from "react";
 
 const Quote = () => {
   const [formData, setFormData] = useState({
     // Company Information
-    companyName: '',
-    industry: '',
-    contactPerson: '',
-    email: '',
-    phone: '',
-    country: '',
-    
+    companyName: "",
+    industry: "",
+    contactPerson: "",
+    email: "",
+    phone: "",
+    country: "",
+
     // Project Details
-    projectType: '',
-    productCategory: '',
-    quantity: '',
-    targetPrice: '',
-    timeline: '',
-    description: '',
-    
+    projectType: "",
+    productCategory: "",
+    quantity: "",
+    targetPrice: "",
+    timeline: "",
+    description: "",
+
     // Additional Requirements
     qualityCertifications: [],
-    deliveryLocation: '',
-    paymentTerms: '',
-    additionalServices: []
+    deliveryLocation: "",
+    paymentTerms: "",
+    additionalServices: [],
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState('');
+  const [submitStatus, setSubmitStatus] = useState("");
 
-  const industries = useMemo(() => [
-    'Oil & Gas', 'Manufacturing', 'Mining', 'Chemical', 
-    'Power & Energy', 'Construction', 'Automotive', 'Aerospace'
-  ], []);
+  const industries = useMemo(
+    () => [
+      "Oil & Gas",
+      "Manufacturing",
+      "Mining",
+      "Chemical",
+      "Power & Energy",
+      "Construction",
+      "Automotive",
+      "Aerospace",
+    ],
+    []
+  );
 
-  const productCategories = useMemo(() => [
-    'Industrial Equipment', 'Machinery', 'Safety Equipment', 
-    'Tools & Instruments', 'Raw Materials', 'Electronic Components',
-    'Pipes & Fittings', 'Valves & Controls'
-  ], []);
+  const productCategories = useMemo(
+    () => [
+      "Industrial Equipment",
+      "Machinery",
+      "Safety Equipment",
+      "Tools & Instruments",
+      "Raw Materials",
+      "Electronic Components",
+      "Pipes & Fittings",
+      "Valves & Controls",
+    ],
+    []
+  );
 
-  const qualityCerts = useMemo(() => [
-    'ISO 9001', 'ISO 14001', 'API Certification', 'CE Marking',
-    'ASME Certification', 'UL Listed', 'ATEX Certified'
-  ], []);
+  const qualityCerts = useMemo(
+    () => [
+      "ISO 9001",
+      "ISO 14001",
+      "API Certification",
+      "CE Marking",
+      "ASME Certification",
+      "UL Listed",
+      "ATEX Certified",
+    ],
+    []
+  );
 
-  const additionalServicesOptions = useMemo(() => [
-    'Quality Inspection', 'Logistics Management', 'Installation Support',
-    'Training Services', 'Maintenance Support', 'Documentation Services'
-  ], []);
+  const additionalServicesOptions = useMemo(
+    () => [
+      "Quality Inspection",
+      "Logistics Management",
+      "Installation Support",
+      "Training Services",
+      "Maintenance Support",
+      "Documentation Services",
+    ],
+    []
+  );
 
   const handleInputChange = useCallback((e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   }, []);
 
   const handleCheckboxChange = useCallback((name, value) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [name]: prev[name].includes(value)
-        ? prev[name].filter(item => item !== value)
-        : [...prev[name], value]
+        ? prev[name].filter((item) => item !== value)
+        : [...prev[name], value],
     }));
   }, []);
 
@@ -73,34 +105,57 @@ const Quote = () => {
     setIsSubmitting(true);
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      setSubmitStatus('success');
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      setSubmitStatus("success");
       // Reset form after successful submission
       setFormData({
-        companyName: '', industry: '', contactPerson: '', email: '', phone: '', country: '',
-        projectType: '', productCategory: '', quantity: '', targetPrice: '', timeline: '', description: '',
-        qualityCertifications: [], deliveryLocation: '', paymentTerms: '', additionalServices: []
+        companyName: "",
+        industry: "",
+        contactPerson: "",
+        email: "",
+        phone: "",
+        country: "",
+        projectType: "",
+        productCategory: "",
+        quantity: "",
+        targetPrice: "",
+        timeline: "",
+        description: "",
+        qualityCertifications: [],
+        deliveryLocation: "",
+        paymentTerms: "",
+        additionalServices: [],
       });
     } catch (error) {
-      setSubmitStatus('error');
+      setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
     }
   }, []);
 
-  if (submitStatus === 'success') {
+  if (submitStatus === "success") {
     return (
       <div className="max-w-3xl mx-auto px-3 py-4 text-center min-h-screen flex flex-col justify-center">
         <div className="bg-green-100 rounded-full w-12 h-12 mx-auto mb-3 flex items-center justify-center">
-          <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          <svg
+            className="w-6 h-6 text-green-600"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M5 13l4 4L19 7"
+            />
           </svg>
         </div>
         <h1 className="text-xl font-bold text-gray-900 mb-2">
           Quote Request Submitted!
         </h1>
         <p className="text-sm text-gray-600 mb-4">
-          Thank you for your interest. Our team will review your requirements 
+          Thank you for your interest. Our team will review your requirements
           and get back to you within 24 hours with a detailed quote.
         </p>
         <div className="bg-gray-50 rounded-lg p-3 mb-4">
@@ -111,29 +166,41 @@ const Quote = () => {
             <div>
               <div className="text-lg text-blue-600 mb-1">1</div>
               <h3 className="font-semibold mb-1 text-xs">Review & Analysis</h3>
-              <p className="text-gray-600 text-xs">Our experts analyze your requirements and identify optimal solutions.</p>
+              <p className="text-gray-600 text-xs">
+                Our experts analyze your requirements and identify optimal
+                solutions.
+              </p>
             </div>
             <div>
               <div className="text-lg text-blue-600 mb-1">2</div>
               <h3 className="font-semibold mb-1 text-xs">Sourcing & Pricing</h3>
-              <p className="text-gray-600 text-xs">We source from our global network and negotiate competitive prices.</p>
+              <p className="text-gray-600 text-xs">
+                We source from our global network and negotiate competitive
+                prices.
+              </p>
             </div>
             <div>
               <div className="text-lg text-blue-600 mb-1">3</div>
               <h3 className="font-semibold mb-1 text-xs">Detailed Proposal</h3>
-              <p className="text-gray-600 text-xs">You receive a comprehensive quote with timeline and terms.</p>
+              <p className="text-gray-600 text-xs">
+                You receive a comprehensive quote with timeline and terms.
+              </p>
             </div>
           </div>
         </div>
         <div className="flex flex-col sm:flex-row gap-2 justify-center">
           <button
-            onClick={() => window.dispatchEvent(new CustomEvent('showSection', { detail: 'home' }))}
+            onClick={() =>
+              window.dispatchEvent(
+                new CustomEvent("showSection", { detail: "home" })
+              )
+            }
             className="bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200 text-sm"
           >
             Return to Home
           </button>
           <button
-            onClick={() => setSubmitStatus('')}
+            onClick={() => setSubmitStatus("")}
             className="border-2 border-blue-600 text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-all duration-200 text-sm"
           >
             Submit Another Request
@@ -148,12 +215,11 @@ const Quote = () => {
       {/* Header */}
       <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-3">
         <div className="max-w-6xl mx-auto px-3 text-center">
-          <h1 className="text-lg font-bold mb-1">
-            Request a Quote
-          </h1>
+          <h1 className="text-lg font-bold mb-1">Request a Quote</h1>
           <p className="text-sm max-w-2xl mx-auto">
-            Get a customized quote for your industrial procurement needs. 
-            Our experts will analyze your requirements and provide competitive pricing.
+            Get a customized quote for your industrial procurement needs. Our
+            experts will analyze your requirements and provide competitive
+            pricing.
           </p>
         </div>
       </section>
@@ -162,7 +228,6 @@ const Quote = () => {
       <section className="flex-1 py-3">
         <div className="max-w-4xl mx-auto px-3">
           <form onSubmit={handleSubmit} className="space-y-3">
-            
             {/* Company Information */}
             <div className="bg-gray-50 rounded-lg p-3">
               <h2 className="text-base font-bold text-gray-900 mb-2">
@@ -194,8 +259,10 @@ const Quote = () => {
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
                   >
                     <option value="">Select Industry</option>
-                    {industries.map(industry => (
-                      <option key={industry} value={industry}>{industry}</option>
+                    {industries.map((industry) => (
+                      <option key={industry} value={industry}>
+                        {industry}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -291,8 +358,10 @@ const Quote = () => {
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
                   >
                     <option value="">Select Category</option>
-                    {productCategories.map(category => (
-                      <option key={category} value={category}>{category}</option>
+                    {productCategories.map((category) => (
+                      <option key={category} value={category}>
+                        {category}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -352,16 +421,17 @@ const Quote = () => {
                 disabled={isSubmitting}
                 className="bg-blue-600 text-white px-8 py-2 rounded-lg font-semibold text-sm hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors duration-200"
               >
-                {isSubmitting ? 'Submitting...' : 'Submit Quote Request'}
+                {isSubmitting ? "Submitting..." : "Submit Quote Request"}
               </button>
               <p className="text-gray-600 mt-2 text-xs">
-                * Required fields. We'll respond within 24 hours.
+                * Required fields. We will respond within 24 hours.
               </p>
             </div>
 
-            {submitStatus === 'error' && (
+            {submitStatus === "error" && (
               <div className="bg-red-100 border border-red-400 text-red-700 px-3 py-2 rounded-lg text-sm">
-                There was an error submitting your request. Please try again or contact us directly.
+                There was an error submitting your request. Please try again or
+                contact us directly.
               </div>
             )}
           </form>

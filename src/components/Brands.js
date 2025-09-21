@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 const Brands = () => {
   const brands = [
     "3M.png",
@@ -99,10 +101,12 @@ const Brands = () => {
                     className="flex items-center justify-center flex-shrink-0 p-2 bg-white rounded-lg snap-start"
                     style={{ width: 96 }}
                   >
-                    <img
+                    <Image
                       src={brand.logo}
                       alt={brand.name}
-                      loading="lazy"
+                      width={80}
+                      height={80}
+                      sizes="80px"
                       className="object-contain w-20 h-20"
                     />
                   </div>
@@ -129,10 +133,12 @@ const Brands = () => {
                   key={index}
                   className="flex items-center justify-center p-2"
                 >
-                  <img
+                  <Image
                     src={brand.logo}
                     alt={brand.name}
-                    loading="lazy"
+                    width={112}
+                    height={112}
+                    sizes="(min-width: 1024px) 112px, 80px"
                     className="object-contain w-24 h-24 md:w-28 md:h-28"
                   />
                 </div>

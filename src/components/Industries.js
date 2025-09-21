@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 const Industries = () => {
   const industries = [
     {
@@ -76,9 +78,12 @@ const Industries = () => {
                 className="flex flex-col items-center p-4 text-center transition-shadow bg-white rounded-md shadow-sm md:p-6 hover:shadow-md"
               >
                 <div className="flex items-center justify-center mb-3">
-                  <img
+                  <Image
                     src={industry.img}
                     alt={industry.name}
+                    width={112}
+                    height={112}
+                    sizes="80px"
                     className="object-contain w-20 h-20 sm:h-24 sm:w-24 md:h-28 md:w-28"
                   />
                 </div>

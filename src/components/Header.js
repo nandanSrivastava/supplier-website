@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
+import Image from "next/image";
 
 const Header = ({ activeSection, setActiveSection }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -90,9 +91,11 @@ const Header = ({ activeSection, setActiveSection }) => {
                 className="flex items-center min-w-0 gap-2 transition-transform hover:scale-105 focus-ring rounded-xl"
                 aria-label="Go to homepage"
               >
-                <img
-                  src="/logo.png"
+                <Image
+                  src={"/logo.png"}
                   alt="Industrial Solutions logo"
+                  width={52}
+                  height={52}
                   className="object-contain rounded-md max-h-10 sm:max-h-12 lg:max-h-14"
                   style={{ width: "auto" }}
                 />

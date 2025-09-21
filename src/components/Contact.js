@@ -1,22 +1,22 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    message: ''
+    name: "",
+    email: "",
+    company: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -27,15 +27,18 @@ const Contact = () => {
 
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      setSubmitStatus('success');
-      
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      setSubmitStatus("success");
+
       // Reset form after successful submission
       setFormData({
-        name: '', email: '', company: '', message: ''
+        name: "",
+        email: "",
+        company: "",
+        message: "",
       });
     } catch (error) {
-      setSubmitStatus('error');
+      setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
     }
@@ -59,14 +62,12 @@ const Contact = () => {
       <section className="py-3 sm:py-4">
         <div className="container-responsive">
           <div className="grid gap-4 lg:grid-cols-2">
-            
-            
             {/* Contact Information */}
             <div className="px-2">
               <h2 className="mb-2 text-base font-bold text-gray-900 sm:text-lg sm:mb-3">
                 Get in Touch
               </h2>
-              
+
               <div className="space-y-3">
                 {/* Contact Numbers */}
                 <div>
@@ -141,17 +142,25 @@ const Contact = () => {
                     📍 Visit Our Office
                   </h3>
                   <div className="p-3 text-xs text-gray-700 border rounded bg-gray-50 sm:text-sm">
-                    <p className="font-medium text-gray-900">Industrial Spares Marketplace</p>
+                    <p className="font-medium text-gray-900">
+                      Industrial Spares Marketplace
+                    </p>
                     <p>88, Safdarjung Enclave, Humayanpur,</p>
                     <p>New Delhi, Delhi, India - 110029</p>
-                    <p className="mt-1 font-medium text-blue-600">Let's have a Cup of Tea/Coffee! ☕</p>
+                    <p className="mt-1 font-medium text-blue-600">
+                      Let&apos;s have a Cup of Tea/Coffee! ☕
+                    </p>
                   </div>
                 </div>
 
                 {/* Quick Quote Button */}
                 <div className="pt-2">
                   <button
-                    onClick={() => window.dispatchEvent(new CustomEvent('showSection', { detail: 'quote' }))}
+                    onClick={() =>
+                      window.dispatchEvent(
+                        new CustomEvent("showSection", { detail: "quote" })
+                      )
+                    }
                     className="w-full px-3 py-2 text-xs font-semibold text-center text-white transition-all duration-200 bg-orange-600 rounded hover:bg-orange-700 sm:text-sm"
                   >
                     🚀 Request Quick Quote

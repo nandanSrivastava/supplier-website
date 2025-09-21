@@ -12,7 +12,8 @@ const Hero = ({ setActiveSection }) => {
     // Preload the background image
     const img = new Image();
     img.onload = () => setImageLoaded(true);
-    img.src = "/big factory.jpg";
+    const bgPath = "/big factory.jpg";
+    img.src = encodeURI(bgPath);
   }, []);
 
   const handleGetStarted = () => {
@@ -46,7 +47,7 @@ const Hero = ({ setActiveSection }) => {
             imageLoaded ? "opacity-100" : "opacity-0"
           }`}
           style={{
-            backgroundImage: `url("/big factory.jpg")`,
+            backgroundImage: `url(${encodeURI("/big factory.jpg")})`,
             backgroundSize: "cover",
             backgroundPosition: "center center",
           }}
@@ -80,7 +81,7 @@ const Hero = ({ setActiveSection }) => {
             >
               <h1 className="max-w-full px-1 mb-2 text-lg font-bold leading-tight text-white xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl xs:mb-3 sm:mb-4 xs:px-2">
                 <span className="block mb-1 xs:mb-1 sm:mb-2">
-                  We're One Stop for
+                  We are One Stop for
                 </span>
                 <span className="block mb-1 text-blue-300 xs:mb-1 sm:mb-2">
                   end to end Global Industrial
@@ -97,12 +98,12 @@ const Hero = ({ setActiveSection }) => {
               }`}
             >
               <p className="max-w-full px-1 mx-auto mb-3 text-xs leading-relaxed text-gray-100 xs:text-xs sm:text-sm md:text-base lg:text-lg xs:mb-4 sm:mb-6 sm:max-w-3xl xs:px-2 sm:px-4">
-                Optimize on their Costs{" "}
+                Optimize costs
                 <span className="font-semibold text-yellow-300">
                   (Atleast Costs 30%)
-                </span>{" "}
-                by Procuring from Low Cost Countries and Managing their
-                End-to-End Logistics to Deliver On Time.
+                </span>
+                by procuring from low-cost countries and managing end-to-end
+                logistics to deliver on time.
               </p>
 
               {/* Coverage / Countries supported (added per user request) */}

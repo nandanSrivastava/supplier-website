@@ -1,28 +1,39 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef, useCallback } from 'react';
-import Header from '../components/Header';
-import Hero from '../components/Hero';
-import About from '../components/About';
-import Products from '../components/Products';
-import Services from '../components/Services';
-import Brands from '../components/Brands';
-import Industries from '../components/Industries';
-import Contact from '../components/Contact';
-import Quote from '../components/Quote';
-import Footer from '../components/Footer';
-import ScrollProgress from '../components/ScrollProgress';
+import { useState, useEffect, useRef, useCallback } from "react";
+import Header from "../components/Header";
+import Hero from "../components/Hero";
+import About from "../components/About";
+import Products from "../components/Products";
+import Services from "../components/Services";
+import Brands from "../components/Brands";
+import Industries from "../components/Industries";
+import Contact from "../components/Contact";
+import Quote from "../components/Quote";
+import Footer from "../components/Footer";
+import ScrollProgress from "../components/ScrollProgress";
 
 export default function Home() {
-  const [activeSection, setActiveSection] = useState('home');
+  const [activeSection, setActiveSection] = useState("home");
   const sectionRefs = useRef({});
   const observerRef = useRef(null);
   const isUserNavigating = useRef(false);
 
+  // Scroll to section with smooth animation
+  const scrollToSection = useCallback((sectionKey) => {
+    const element = sectionRefs.current[sectionKey];
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, []);
+
   // Handle URL hash changes and initial load
   useEffect(() => {
     const handleHashChange = () => {
-      const hash = window.location.hash.replace('#', '') || 'home';
+      const hash = window.location.hash.replace("#", "") || "home";
       isUserNavigating.current = true;
       setActiveSection(hash);
       scrollToSection(hash);
@@ -32,22 +43,22 @@ export default function Home() {
     };
 
     // Set initial section from URL hash
-    const initialHash = window.location.hash.replace('#', '') || 'home';
+    const initialHash = window.location.hash.replace("#", "") || "home";
     setActiveSection(initialHash);
 
     // Listen for hash changes
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, [scrollToSection]);
 
   // Set up intersection observer for automatic section detection
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === "undefined") return;
 
     const observerOptions = {
       root: null,
-      rootMargin: '-20% 0px -20% 0px',
-      threshold: 0.3
+      rootMargin: "-20% 0px -20% 0px",
+      threshold: 0.3,
     };
 
     observerRef.current = new IntersectionObserver((entries) => {
@@ -58,7 +69,11 @@ export default function Home() {
           const sectionId = entry.target.id;
           if (sectionId && sectionId !== activeSection) {
             setActiveSection(sectionId);
-            window.history.replaceState(null, '', sectionId === 'home' ? '#' : `#${sectionId}`);
+            window.history.replaceState(
+              null,
+              "",
+              sectionId === "home" ? "#" : `#${sectionId}`
+            );
           }
         }
       });
@@ -78,27 +93,23 @@ export default function Home() {
     };
   }, [activeSection]);
 
-  // Scroll to section with smooth animation
-  const scrollToSection = useCallback((sectionKey) => {
-    const element = sectionRefs.current[sectionKey];
-    if (element) {
-      element.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-  }, []);
-
   // Enhanced setActiveSection that updates URL hash
-  const handleSetActiveSection = useCallback((section) => {
-    isUserNavigating.current = true;
-    setActiveSection(section);
-    window.history.pushState(null, '', section === 'home' ? '#' : `#${section}`);
-    scrollToSection(section);
-    setTimeout(() => {
-      isUserNavigating.current = false;
-    }, 1000);
-  }, [scrollToSection]);
+  const handleSetActiveSection = useCallback(
+    (section) => {
+      isUserNavigating.current = true;
+      setActiveSection(section);
+      window.history.pushState(
+        null,
+        "",
+        section === "home" ? "#" : `#${section}`
+      );
+      scrollToSection(section);
+      setTimeout(() => {
+        isUserNavigating.current = false;
+      }, 1000);
+    },
+    [scrollToSection]
+  );
 
   // Set ref for section and add to observer
   const setSectionRef = useCallback((sectionKey, element) => {
@@ -111,14 +122,14 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       <ScrollProgress />
-      <Header 
-        activeSection={activeSection} 
-        setActiveSection={handleSetActiveSection} 
+      <Header
+        activeSection={activeSection}
+        setActiveSection={handleSetActiveSection}
       />
       <main>
         {/* Hero Section */}
-        <div 
-          ref={(el) => setSectionRef('home', el)}
+        <div
+          ref={(el) => setSectionRef("home", el)}
           id="home"
           className="section-container"
         >
@@ -126,8 +137,8 @@ export default function Home() {
         </div>
 
         {/* About Section */}
-        <div 
-          ref={(el) => setSectionRef('about', el)}
+        <div
+          ref={(el) => setSectionRef("about", el)}
           id="about"
           className="section-container"
         >
@@ -135,8 +146,8 @@ export default function Home() {
         </div>
 
         {/* Products Section */}
-        <div 
-          ref={(el) => setSectionRef('products', el)}
+        <div
+          ref={(el) => setSectionRef("products", el)}
           id="products"
           className="section-container"
         >
@@ -144,8 +155,8 @@ export default function Home() {
         </div>
 
         {/* Services Section */}
-        <div 
-          ref={(el) => setSectionRef('services', el)}
+        <div
+          ref={(el) => setSectionRef("services", el)}
           id="services"
           className="section-container"
         >
@@ -153,8 +164,8 @@ export default function Home() {
         </div>
 
         {/* Brands Section */}
-        <div 
-          ref={(el) => setSectionRef('brands', el)}
+        <div
+          ref={(el) => setSectionRef("brands", el)}
           id="brands"
           className="section-container"
         >
@@ -162,8 +173,8 @@ export default function Home() {
         </div>
 
         {/* Industries Section */}
-        <div 
-          ref={(el) => setSectionRef('industries', el)}
+        <div
+          ref={(el) => setSectionRef("industries", el)}
           id="industries"
           className="section-container"
         >
@@ -171,8 +182,8 @@ export default function Home() {
         </div>
 
         {/* Contact Section */}
-        <div 
-          ref={(el) => setSectionRef('contact', el)}
+        <div
+          ref={(el) => setSectionRef("contact", el)}
           id="contact"
           className="section-container"
         >
@@ -180,8 +191,8 @@ export default function Home() {
         </div>
 
         {/* Quote Section */}
-        <div 
-          ref={(el) => setSectionRef('quote', el)}
+        <div
+          ref={(el) => setSectionRef("quote", el)}
           id="quote"
           className="section-container"
         >

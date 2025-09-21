@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 
 const Products = () => {
@@ -75,14 +76,14 @@ const Products = () => {
     setCurrentSlide(index);
   };
 
-  // Auto-play carousel (optional)
+  // Auto-play carousel (optional) - stable interval
   useEffect(() => {
     const timer = setInterval(() => {
-      nextSlide();
+      setCurrentSlide((prev) => (prev + 1) % products.length);
     }, 4000); // Change slide every 4 seconds
 
     return () => clearInterval(timer);
-  }, [currentSlide]);
+  }, [products.length]);
 
   return (
     <div className="py-2 sm:py-1">
@@ -115,15 +116,14 @@ const Products = () => {
                 style={{ boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)" }}
               >
                 {/* Fixed size image */}
-                <img
+                <Image
                   src={products[currentSlide].image}
                   alt={products[currentSlide].name}
+                  width={1200}
+                  height={800}
+                  sizes="100vw"
                   className="object-cover w-full mb-6 rounded-lg h-80"
                   style={{ minHeight: "320px", maxHeight: "400px" }}
-                  onError={(e) => {
-                    e.target.style.display = "none";
-                    e.target.nextElementSibling.style.display = "block";
-                  }}
                 />
                 <div className="hidden text-xl">
                   {products[currentSlide].icon}
@@ -207,15 +207,14 @@ const Products = () => {
                 className="p-4 text-center transition-shadow bg-white rounded-lg shadow-sm md:p-6 hover:shadow-md"
               >
                 <div className="mb-3">
-                  <img
+                  <Image
                     src={product.image}
                     alt={product.name}
+                    width={400}
+                    height={240}
+                    sizes="(max-width: 768px) 100vw, 400px"
                     className="object-cover w-full h-32 mb-2 rounded md:h-40"
                     style={{ minHeight: "128px", maxHeight: "200px" }}
-                    onError={(e) => {
-                      e.target.style.display = "none";
-                      e.target.nextElementSibling.style.display = "block";
-                    }}
                   />
                   <div className="hidden text-sm">{product.icon}</div>
                 </div>
