@@ -229,7 +229,7 @@ const Quote = () => {
         <div className="max-w-4xl mx-auto px-3">
           <form onSubmit={handleSubmit} className="space-y-3">
             {/* Company Information */}
-            <div className="bg-gray-50 rounded-lg p-3">
+            <div className="bg-gray-50 rounded-lg p-3 backshadow">
               <h2 className="text-base font-bold text-gray-900 mb-2">
                 Company Information
               </h2>
@@ -322,7 +322,7 @@ const Quote = () => {
             </div>
 
             {/* Project Details */}
-            <div className="bg-white border border-gray-200 rounded-lg p-3">
+            <div className="bg-white border border-gray-200 rounded-lg p-3 backshadow">
               <h2 className="text-base font-bold text-gray-900 mb-2">
                 Project Details
               </h2>

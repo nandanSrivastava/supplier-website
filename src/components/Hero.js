@@ -72,78 +72,87 @@ const Hero = ({ setActiveSection }) => {
       >
         <div className="w-full max-w-full container-responsive">
           <div className="w-full max-w-5xl mx-auto text-center">
-            <div
-              className={`transition-all duration-1000 delay-300 ${
-                isLoaded
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
-              }`}
-            >
-              <h1 className="max-w-full px-1 mb-2 text-lg font-bold leading-tight text-white xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl xs:mb-3 sm:mb-4 xs:px-2">
-                <span className="block mb-1 xs:mb-1 sm:mb-2">
-                  We are One Stop for
+            <div className="flex flex-col items-center space-y-3 sm:items-center xs:space-y-4 sm:space-y-3">
+              {/* Small-screen-only header label */}
+              <div className="w-full pb-3 mb-6 text-center sm:hidden">
+                <span className="inline-block px-2 py-1 font-serif text-4xl font-semibold text-white rounded bg-black/30">
+                  Industrial Spares Marketplace
                 </span>
-                <span className="block mb-1 text-blue-300 xs:mb-1 sm:mb-2">
-                  end to end Global Industrial
-                </span>
-                <span className="block">Procurement Solutions</span>
-              </h1>
-            </div>
-
-            <div
-              className={`transition-all duration-1000 delay-500 ${
-                isLoaded
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
-              }`}
-            >
-              <p className="max-w-full px-1 mx-auto mb-3 text-xs leading-relaxed text-gray-100 xs:text-xs sm:text-sm md:text-base lg:text-lg xs:mb-4 sm:mb-6 sm:max-w-3xl xs:px-2 sm:px-4">
-                Optimize costs
-                <span className="font-semibold text-yellow-300">
-                  (Atleast Costs 30%)
-                </span>
-                by procuring from low-cost countries and managing end-to-end
-                logistics to deliver on time.
-              </p>
-
-              {/* Coverage / Countries supported (added per user request) */}
-              <p className="max-w-full px-1 mx-auto mb-4 text-xs leading-relaxed text-gray-200 xs:text-xs sm:text-sm md:text-sm lg:text-base xs:px-2 sm:px-4">
-                We will support global industrial procurements from India,
-                China, Vietnam, Indonesia, Malaysia, Philippines, Korea, Middle
-                East, Europe, America, Africa, Australia and other countries.
-              </p>
-            </div>
-
-            <div
-              className={`transition-all duration-1000 delay-700 ${
-                isLoaded
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
-              }`}
-            >
-              <div className="flex flex-col items-center justify-center max-w-full gap-2 px-1 mx-auto sm:flex-row sm:gap-3 xs:px-2 sm:px-4 sm:max-w-2xl">
-                <button
-                  onClick={handleGetStarted}
-                  className="w-full max-w-full min-w-0 px-3 py-2 text-xs transition-all duration-300 transform shadow-2xl xs:w-full sm:w-auto btn-primary xs:text-xs sm:text-sm md:text-base xs:px-3 sm:px-4 md:px-6 xs:py-2 sm:py-3 hover:shadow-blue-500/25 hover:scale-105"
-                  aria-label="Get started with our services"
-                >
-                  <span className="flex items-center justify-center">
-                    Get Started Today
-                    <svg
-                      className="w-3 h-3 ml-2 xs:w-3 xs:h-3 sm:w-4 sm:h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M13 7l5 5m0 0l-5 5m5-5H6"
-                      />
-                    </svg>
+              </div>
+              <div
+                className={`transition-all duration-1000 delay-300 ${
+                  isLoaded
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
+                }`}
+              >
+                <h1 className="max-w-full px-1 mb-2 text-lg font-bold leading-tight text-white xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl xs:mb-3 sm:mb-4 xs:px-2">
+                  <span className="block mb-1 xs:mb-1 sm:mb-2">
+                    We are One Stop for
                   </span>
-                </button>
+                  <span className="block mb-1 text-blue-300 xs:mb-1 sm:mb-2">
+                    end to end Global Industrial
+                  </span>
+                  <span className="block">Procurement Solutions</span>
+                </h1>
+              </div>
+
+              <div
+                className={`transition-all duration-1000 delay-500 ${
+                  isLoaded
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
+                }`}
+              >
+                <p className="max-w-full px-1 mx-auto mb-3 text-xs leading-relaxed text-gray-100 xs:text-xs sm:text-sm md:text-base lg:text-lg xs:mb-4 sm:mb-6 sm:max-w-3xl xs:px-2 sm:px-4">
+                  Optimize costs
+                  <span className="font-semibold text-yellow-300">
+                    (Atleast Costs 30%)
+                  </span>
+                  by procuring from low-cost countries and managing end-to-end
+                  logistics to deliver on time.
+                </p>
+
+                {/* Coverage / Countries supported (added per user request) */}
+                <p className="max-w-full px-1 mx-auto mb-4 text-xs leading-relaxed text-gray-200 xs:text-xs sm:text-sm md:text-sm lg:text-base xs:px-2 sm:px-4">
+                  We will support global industrial procurements from India,
+                  China, Vietnam, Indonesia, Malaysia, Philippines, Korea,
+                  Middle East, Europe, America, Africa, Australia and other
+                  countries.
+                </p>
+              </div>
+
+              <div
+                className={`transition-all duration-1000 delay-700 ${
+                  isLoaded
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
+                }`}
+              >
+                <div className="flex flex-col items-center justify-center max-w-full gap-3 px-1 mx-auto sm:flex-row sm:gap-3 xs:px-2 sm:px-4 sm:max-w-2xl xs:mb-2">
+                  <button
+                    onClick={handleGetStarted}
+                    className="w-full max-w-full min-w-0 px-3 py-2 text-xs transition-all duration-300 transform shadow-2xl xs:w-full sm:w-auto btn-primary xs:text-xs sm:text-sm md:text-base xs:px-3 sm:px-4 md:px-6 xs:py-3 sm:py-3 hover:shadow-blue-500/25 hover:scale-105"
+                    aria-label="Get started with our services"
+                  >
+                    <span className="flex items-center justify-center">
+                      Get Started Today
+                      <svg
+                        className="w-3 h-3 ml-2 xs:w-3 xs:h-3 sm:w-4 sm:h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M13 7l5 5m0 0l-5 5m5-5H6"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                </div>
               </div>
             </div>
 

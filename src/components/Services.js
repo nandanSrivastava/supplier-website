@@ -101,25 +101,29 @@ const Services = () => {
   const active = services[activeService];
 
   return (
-    <section className="flex items-start w-full overflow-hidden bg-gradient-to-b from-gray-50 to-white py-8">
+    <section className="flex items-start w-full py-8 overflow-hidden bg-gradient-to-b from-gray-50 to-white">
+      {/* Full-bleed hero */}
+      <div className="w-full py-3 mb-6 text-white bg-gradient-to-r from-blue-600 to-blue-700 sm:py-4">
+        <div className="max-w-5xl px-4 mx-auto text-center">
+          <h1 className="mb-1 text-lg font-bold sm:text-2xl lg:text-3xl">
+            Services we provide
+          </h1>
+          <p className="text-sm sm:text-base opacity-90">
+            Services to make your purchase easy, risk-free & fast with
+            measurable cost savings.
+          </p>
+        </div>
+      </div>
       <div className="w-full py-12 container-responsive">
         <div className="max-w-6xl mx-auto">
-          <div className="px-4 mb-6 text-center">
-            <h2 className="mb-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
-              Services We Provide
-            </h2>
-            <p className="max-w-3xl mx-auto text-sm text-gray-600 sm:text-base">
-              Services to make your purchase easy, risk-free & fast with
-              measurable cost savings.
-            </p>
-          </div>
+          {/* Intro text removed — compact hero above provides the intro */}
 
           {/* Benefits */}
           <div className="grid grid-cols-2 gap-4 px-2 mb-8 md:grid-cols-4">
             {benefits.map((b, i) => (
               <div
                 key={i}
-                className="p-4 text-center bg-white rounded-lg shadow-sm"
+                className="p-4 text-center bg-white rounded-lg shadow-sm backshadow"
               >
                 <div className="mb-1 text-lg font-bold text-blue-600">
                   {b.value}
@@ -148,8 +152,8 @@ const Services = () => {
                       onClick={() => handleServiceClick(index)}
                       className={`text-left p-4 rounded-lg mb-2 transition-transform duration-200 focus:outline-none w-full flex items-start space-x-3 ${
                         activeService === index
-                          ? "bg-blue-600 text-white transform scale-100 shadow-lg"
-                          : "bg-white text-gray-900 hover:shadow-md"
+                          ? "bg-blue-600 text-white transform scale-100 shadow-lg backshadow"
+                          : "bg-white text-gray-900 hover:shadow-md backshadow"
                       }`}
                     >
                       <div className="flex-shrink-0 text-2xl">
@@ -175,8 +179,8 @@ const Services = () => {
               </div>
 
               {/* Details */}
-              <div className="p-6 bg-white rounded-lg shadow-sm md:col-span-2">
-                <div className="flex flex-col md:flex-row items-start justify-between">
+              <div className="p-6 bg-white rounded-lg shadow-sm md:col-span-2 backshadow">
+                <div className="flex flex-col items-start justify-between md:flex-row">
                   <div>
                     <h4 className="text-xl font-bold text-gray-900 sm:text-2xl">
                       {active.title}
@@ -211,20 +215,20 @@ const Services = () => {
                     </ul>
                   </div>
 
-                  <div className="w-full md:w-40 md:ml-4 mt-4 md:mt-0 flex md:flex-col gap-2">
-                    <div className="p-3 text-center bg-gray-100 rounded flex-1">
+                  <div className="flex w-full gap-2 mt-4 md:w-40 md:ml-4 md:mt-0 md:flex-col">
+                    <div className="flex-1 p-3 text-center bg-gray-100 rounded">
                       <div className="text-xs text-gray-500">Cost</div>
                       <div className="text-lg font-bold text-gray-900">
                         {active.stats.cost}
                       </div>
                     </div>
-                    <div className="p-3 text-center bg-gray-100 rounded flex-1">
+                    <div className="flex-1 p-3 text-center bg-gray-100 rounded">
                       <div className="text-xs text-gray-500">Avg Lead</div>
                       <div className="text-lg font-bold text-gray-900">
                         {active.stats.time}
                       </div>
                     </div>
-                    <div className="p-3 text-center bg-gray-100 rounded flex-1">
+                    <div className="flex-1 p-3 text-center bg-gray-100 rounded">
                       <div className="text-xs text-gray-500">Suppliers</div>
                       <div className="text-lg font-bold text-gray-900">
                         {active.stats.suppliers}
@@ -236,13 +240,13 @@ const Services = () => {
                 <div className="flex items-center mt-6 space-x-3">
                   <a
                     href="#contact"
-                    className="inline-block w-full md:w-auto px-4 py-3 text-sm font-semibold text-white bg-blue-600 rounded-md shadow text-center"
+                    className="inline-block w-full px-4 py-3 text-sm font-semibold text-center text-white bg-blue-600 rounded-md shadow md:w-auto"
                   >
                     Request Quote
                   </a>
                   <a
                     href="#contact"
-                    className="inline-block w-full md:w-auto text-sm text-gray-600 underline text-center"
+                    className="inline-block w-full text-sm text-center text-gray-600 underline md:w-auto"
                   >
                     Contact Sales
                   </a>

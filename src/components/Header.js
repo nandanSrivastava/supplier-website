@@ -78,8 +78,10 @@ const Header = ({ activeSection, setActiveSection }) => {
   return (
     <>
       <header
-        className={`fixed w-full top-0 z-50 transition-all duration-300 max-w-full ${
-          isScrolled ? "bg-blue-700 shadow-2xl" : "bg-blue-600 shadow-lg"
+        className={`fixed w-full top-0 z-50 transition-all duration-300 max-w-full bg-transparent ${
+          isScrolled
+            ? "sm:bg-blue-700 sm:shadow-2xl"
+            : "sm:bg-blue-600 sm:shadow-lg"
         } ${isScrolled ? "header-scrolled" : "header-default"}`}
       >
         <div className="container-responsive">

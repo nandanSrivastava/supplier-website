@@ -131,7 +131,7 @@ const Brands = () => {
               {brands.map((brand, index) => (
                 <div
                   key={index}
-                  className="flex items-center justify-center p-2"
+                  className="flex items-center justify-center p-2 backshadow"
                 >
                   <Image
                     src={brand.logo}

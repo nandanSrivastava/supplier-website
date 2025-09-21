@@ -75,7 +75,7 @@ const Industries = () => {
             {industries.map((industry, index) => (
               <div
                 key={index}
-                className="flex flex-col items-center p-4 text-center transition-shadow bg-white rounded-md shadow-sm md:p-6 hover:shadow-md"
+                className="flex flex-col items-center p-4 text-center transition-shadow bg-white rounded-md shadow-sm md:p-6 hover:shadow-md backshadow"
               >
                 <div className="flex items-center justify-center mb-3">
                   <Image

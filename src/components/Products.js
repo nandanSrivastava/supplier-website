@@ -178,21 +178,6 @@ const Products = () => {
               </button>
             </div>
 
-            {/* Dots Indicator */}
-            <div className="flex justify-center mt-4 space-x-2">
-              {products.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToSlide(index)}
-                  className={`h-2 rounded-full transition-all ${
-                    currentSlide === index
-                      ? "bg-blue-600 w-8"
-                      : "bg-gray-300 w-2"
-                  }`}
-                />
-              ))}
-            </div>
-
             {/* Product Counter */}
             <div className="mt-2 text-xs text-center text-gray-500">
               {currentSlide + 1} of {products.length}
@@ -204,7 +189,7 @@ const Products = () => {
             {products.map((product, index) => (
               <div
                 key={index}
-                className="p-4 text-center transition-shadow bg-white rounded-lg shadow-sm md:p-6 hover:shadow-md"
+                className="p-4 text-center transition-shadow bg-white rounded-lg shadow-sm md:p-6 hover:shadow-md backshadow"
               >
                 <div className="mb-3">
                   <Image

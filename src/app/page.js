@@ -17,6 +17,7 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState("home");
   const sectionRefs = useRef({});
   const observerRef = useRef(null);
+  const isInitialLoad = useRef(true);
   const isUserNavigating = useRef(false);
 
   // Scroll to section with smooth animation
@@ -44,7 +45,12 @@ export default function Home() {
 
     // Set initial section from URL hash
     const initialHash = window.location.hash.replace("#", "") || "home";
+    // mark initial load so observer won't override this
     setActiveSection(initialHash);
+    // allow a short delay before enabling observer updates
+    setTimeout(() => {
+      isInitialLoad.current = false;
+    }, 200);
 
     // Listen for hash changes
     window.addEventListener("hashchange", handleHashChange);
@@ -62,7 +68,7 @@ export default function Home() {
     };
 
     observerRef.current = new IntersectionObserver((entries) => {
-      if (isUserNavigating.current) return;
+      if (isUserNavigating.current || isInitialLoad.current) return;
 
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
