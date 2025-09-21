@@ -1,77 +1,93 @@
-'use client';
+"use client";
 
 const Industries = () => {
   const industries = [
     {
       id: 1,
-      name: 'Power (Thermal, Hydro Etc.)',
-      desc: 'Power generation and distribution equipment',
-      icon: '⚡'
+      name: "Power (Thermal, Hydro Etc.)",
+      desc: "Power generation and distribution equipment",
+      img: "/Industries/Power.png",
     },
     {
       id: 2,
-      name: 'Sugar Factory',
-      desc: 'Sugar manufacturing and processing equipment',
-      icon: '🏭'
+      name: "Sugar Factory",
+      desc: "Sugar manufacturing and processing equipment",
+      img: "/Industries/Sugar Factory.png",
     },
     {
       id: 3,
-      name: 'Cement Factory',
-      desc: 'Cement production and processing machinery',
-      icon: '🏗️'
+      name: "Cement Factory",
+      desc: "Cement production and processing machinery",
+      img: "/Industries/Cement Factory.png",
     },
     {
       id: 4,
-      name: 'Pharmaceutical Plant',
-      desc: 'Pharmaceutical manufacturing equipment',
-      icon: '💊'
+      name: "Pharmaceutical Plant",
+      desc: "Pharmaceutical manufacturing equipment",
+      img: "/Industries/Pharmaceutical Plant.jpeg",
     },
     {
       id: 5,
-      name: 'Steel Plant',
-      desc: 'Steel production and processing equipment',
-      icon: '🔧'
+      name: "Steel Plant",
+      desc: "Steel production and processing equipment",
+      img: "/Industries/Steel Plant.jpg",
     },
     {
       id: 6,
-      name: 'Mining & Minerals',
-      desc: 'Mining and mineral processing equipment',
-      icon: '⛏️'
+      name: "Mining & Minerals",
+      desc: "Mining and mineral processing equipment",
+      img: "/Industries/Mining & Minerals.jpg",
     },
     {
       id: 7,
-      name: 'Food & Beverages',
-      desc: 'Food processing and beverage production',
-      icon: '🍽️'
+      name: "Food & Beverages",
+      desc: "Food processing and beverage production",
+      img: "/Industries/Food & Beverages.jpg",
     },
     {
       id: 8,
-      name: 'Other Various Industries',
-      desc: 'Diverse industrial solutions and equipment',
-      icon: '🏢'
-    }
+      name: "Other Various Industries",
+      desc: "Diverse industrial solutions and equipment",
+      img: "/Industries/Other Various Industries.png",
+    },
   ];
 
   return (
     <div className="py-3 sm:py-4">
       {/* Compact Hero */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 sm:py-4">
-        <div className="max-w-5xl mx-auto px-4 text-center">
-          <h1 className="text-base sm:text-lg lg:text-xl font-bold mb-1">Industries We Are Supporting</h1>
-          <p className="text-xs sm:text-sm opacity-90">Our Vision - To Solve End to End Procurement for Factories/Plants.</p>
+      <div className="py-3 text-white bg-gradient-to-r from-blue-600 to-blue-700 sm:py-4">
+        <div className="max-w-5xl px-4 mx-auto text-center">
+          <h1 className="mb-1 text-base font-bold sm:text-lg lg:text-xl">
+            Industries We Are Supporting
+          </h1>
+          <p className="text-xs sm:text-sm opacity-90">
+            Our Vision - To Solve End to End Procurement for Factories/Plants.
+          </p>
         </div>
       </div>
 
       {/* Industries Grid */}
-      <div className="bg-gray-50 py-4">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-sm sm:text-base font-bold text-center mb-4">Industries We Serve</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
+      <div className="py-4 bg-gray-50">
+        <div className="max-w-6xl px-4 mx-auto">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-4">
             {industries.map((industry, index) => (
-              <div key={index} className="bg-white rounded-md p-2 md:p-3 text-center shadow-sm hover:shadow-md transition-shadow">
-                <div className="text-base md:text-lg mb-1">{industry.icon}</div>
-                <h4 className="text-xs md:text-sm font-semibold text-gray-900 mb-1 leading-tight">{industry.name}</h4>
-                <p className="text-xs text-gray-600 leading-tight">{industry.desc}</p>
+              <div
+                key={index}
+                className="flex flex-col items-center p-4 text-center transition-shadow bg-white rounded-md shadow-sm md:p-6 hover:shadow-md"
+              >
+                <div className="flex items-center justify-center mb-3">
+                  <img
+                    src={industry.img}
+                    alt={industry.name}
+                    className="object-contain w-20 h-20 sm:h-24 sm:w-24 md:h-28 md:w-28"
+                  />
+                </div>
+                <h4 className="mb-2 text-sm font-semibold text-center text-gray-900 sm:text-base md:text-lg">
+                  {industry.name}
+                </h4>
+                <p className="max-w-xs text-sm text-center text-gray-600 sm:text-base">
+                  {industry.desc}
+                </p>
               </div>
             ))}
           </div>

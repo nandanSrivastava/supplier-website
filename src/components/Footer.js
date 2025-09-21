@@ -36,9 +36,10 @@ const Footer = () => {
     {
       title: 'Our Services',
       links: [
-        { name: 'Service 1', href: '#services' },
-        { name: 'Service 2', href: '#services' },
-        { name: 'Service 3', href: '#services' }
+        { name: 'Cost Saving', href: '#services' },
+        { name: 'Fast Delivery', href: '#services' },
+        { name: 'Risk Free', href: '#services' },
+        { name: 'Quality Assurance', href: '#services' }
       ]
     },
     {
@@ -113,22 +114,22 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="text-white bg-gray-900">
       {/* Main Footer */}
-      <div className="container-responsive py-3 px-2">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6 justify-center text-center sm:text-left">
+      <div className="px-2 py-3 container-responsive">
+        <div className="grid justify-center grid-cols-1 gap-6 text-center sm:grid-cols-2 md:grid-cols-5 sm:text-left">
           {/* Footer Sections */}
           {footerSections.map((section) => (
-            <div key={section.title} className="mb-4 sm:mb-0 flex flex-col items-center sm:items-start">
-              <h4 className="text-sm font-semibold mb-2 text-white">
+            <div key={section.title} className="flex flex-col items-center mb-4 sm:mb-0 sm:items-start">
+              <h4 className="mb-2 text-sm font-semibold text-white">
                 {section.title}
               </h4>
-              <ul className="space-y-0 w-full flex flex-col items-center sm:items-start">
+              <ul className="flex flex-col items-center w-full space-y-0 sm:items-start">
                 {section.links.map((link) => (
-                  <li key={link.name} className="w-full flex justify-center sm:justify-start">
+                  <li key={link.name} className="flex justify-center w-full sm:justify-start">
                     <button
                       onClick={() => handleNavClick(link.href)}
-                      className="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-xs py-0"
+                      className="py-0 text-xs text-gray-400 transition-colors duration-200 hover:text-blue-400"
                     >
                       {link.name}
                     </button>
@@ -142,9 +143,9 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-6 pt-4 border-t border-gray-800">
+        <div className="pt-4 mt-6 border-t border-gray-800">
           <div className="text-center">
-            <p className="text-gray-400 text-xs">
+            <p className="text-xs text-gray-400">
               © {currentYear} <span className="text-yellow-500">industrialsparesmarketplace.com</span>
             </p>
           </div>

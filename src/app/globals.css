@@ -34,7 +34,8 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
   /* Ensure minimum width for content */
@@ -46,7 +47,14 @@ body {
 }
 
 /* Ensure all sections and divs don't exceed viewport */
-section, div, main, header, footer, nav, article, aside {
+section,
+div,
+main,
+header,
+footer,
+nav,
+article,
+aside {
   max-width: 100%;
   box-sizing: border-box;
 }
@@ -92,12 +100,12 @@ section, div, main, header, footer, nav, article, aside {
   .hero-section {
     padding: 0.25rem;
   }
-  
+
   .hero-section h1 {
     line-height: 1.3;
     word-spacing: -0.1em;
   }
-  
+
   .hero-section .btn-primary {
     font-size: 0.8rem;
     padding: 0.6rem 1rem;
@@ -136,19 +144,45 @@ section, div, main, header, footer, nav, article, aside {
 }
 
 /* Strict width constraints for common max-width classes */
-.max-w-sm { max-width: min(24rem, calc(100vw - 2rem)) !important; }
-.max-w-md { max-width: min(28rem, calc(100vw - 2rem)) !important; }
-.max-w-lg { max-width: min(32rem, calc(100vw - 2rem)) !important; }
-.max-w-xl { max-width: min(36rem, calc(100vw - 2rem)) !important; }
-.max-w-2xl { max-width: min(42rem, calc(100vw - 2rem)) !important; }
-.max-w-3xl { max-width: min(48rem, calc(100vw - 2rem)) !important; }
-.max-w-4xl { max-width: min(56rem, calc(100vw - 2rem)) !important; }
-.max-w-5xl { max-width: min(64rem, calc(100vw - 2rem)) !important; }
-.max-w-6xl { max-width: min(72rem, calc(100vw - 2rem)) !important; }
-.max-w-7xl { max-width: min(80rem, calc(100vw - 2rem)) !important; }
+.max-w-sm {
+  max-width: min(24rem, calc(100vw - 2rem)) !important;
+}
+.max-w-md {
+  max-width: min(28rem, calc(100vw - 2rem)) !important;
+}
+.max-w-lg {
+  max-width: min(32rem, calc(100vw - 2rem)) !important;
+}
+.max-w-xl {
+  max-width: min(36rem, calc(100vw - 2rem)) !important;
+}
+.max-w-2xl {
+  max-width: min(42rem, calc(100vw - 2rem)) !important;
+}
+.max-w-3xl {
+  max-width: min(48rem, calc(100vw - 2rem)) !important;
+}
+.max-w-4xl {
+  max-width: min(56rem, calc(100vw - 2rem)) !important;
+}
+.max-w-5xl {
+  max-width: min(64rem, calc(100vw - 2rem)) !important;
+}
+.max-w-6xl {
+  max-width: min(72rem, calc(100vw - 2rem)) !important;
+}
+.max-w-7xl {
+  max-width: min(80rem, calc(100vw - 2rem)) !important;
+}
 
 /* Ensure images and media are responsive */
-img, video, canvas, audio, iframe, embed, object {
+img,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
   max-width: 100%;
   height: auto;
   box-sizing: border-box;
@@ -163,7 +197,8 @@ table {
 }
 
 /* Force flex items to respect container width */
-.flex > *, .flex-col > * {
+.flex > *,
+.flex-col > * {
   min-width: 0;
   flex-shrink: 1;
 }
@@ -185,10 +220,18 @@ table {
   transform: translateY(30px);
 }
 
-.stagger-1 { animation-delay: 0.1s; }
-.stagger-2 { animation-delay: 0.2s; }
-.stagger-3 { animation-delay: 0.3s; }
-.stagger-4 { animation-delay: 0.4s; }
+.stagger-1 {
+  animation-delay: 0.1s;
+}
+.stagger-2 {
+  animation-delay: 0.2s;
+}
+.stagger-3 {
+  animation-delay: 0.3s;
+}
+.stagger-4 {
+  animation-delay: 0.4s;
+}
 
 @keyframes fadeIn {
   from {
@@ -260,7 +303,7 @@ table {
 }
 
 .loading::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -281,10 +324,9 @@ table {
 
 /* Industrial theme adjustments */
 .industrial-bg {
-  background-image: 
-    linear-gradient(45deg, #64748b 25%, transparent 25%), 
-    linear-gradient(-45deg, #64748b 25%, transparent 25%), 
-    linear-gradient(45deg, transparent 75%, #64748b 75%), 
+  background-image: linear-gradient(45deg, #64748b 25%, transparent 25%),
+    linear-gradient(-45deg, #64748b 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #64748b 75%),
     linear-gradient(-45deg, transparent 75%, #64748b 75%);
   background-size: 20px 20px;
   background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
@@ -298,8 +340,12 @@ table {
 }
 
 /* Mobile-first responsive text */
-.text-responsive-xs { font-size: 0.875rem; }
-.text-responsive-sm { font-size: 1rem; }
+.text-responsive-xs {
+  font-size: 0.875rem;
+}
+.text-responsive-sm {
+  font-size: 1rem;
+}
 
 /* Additional responsive utilities for better screen fitting */
 @media screen and (max-width: 480px) {
@@ -308,24 +354,31 @@ table {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
   }
-  
+
   /* Reduce spacing on very small screens */
-  .space-y-4 > * + * { margin-top: 1rem; }
-  .space-y-6 > * + * { margin-top: 1.5rem; }
-  .space-y-8 > * + * { margin-top: 2rem; }
-  
+  .space-y-4 > * + * {
+    margin-top: 1rem;
+  }
+  .space-y-6 > * + * {
+    margin-top: 1.5rem;
+  }
+  .space-y-8 > * + * {
+    margin-top: 2rem;
+  }
+
   /* Ensure buttons don't exceed screen width */
-  button, .btn {
+  button,
+  .btn {
     max-width: 100%;
     min-width: auto;
   }
-  
+
   /* Hero specific optimizations */
   .hero-section {
     min-height: 100vh;
     min-height: 100dvh; /* Dynamic viewport height for mobile */
   }
-  
+
   /* Ensure background images scale properly */
   [style*="background-image"] {
     background-size: cover !important;
@@ -340,15 +393,19 @@ table {
     padding-left: 0.25rem;
     padding-right: 0.25rem;
   }
-  
+
   /* Further reduce font sizes if needed */
-  h1 { 
+  h1 {
     font-size: 1.125rem !important;
     line-height: 1.4 !important;
   }
-  h2 { font-size: 1rem !important; }
-  h3 { font-size: 0.9rem !important; }
-  
+  h2 {
+    font-size: 1rem !important;
+  }
+  h3 {
+    font-size: 0.9rem !important;
+  }
+
   /* Ensure text doesn't break layout */
   .hero-section h1 {
     font-size: 1rem !important;
@@ -356,12 +413,12 @@ table {
     word-break: break-word;
     hyphens: auto;
   }
-  
+
   .hero-section p {
     font-size: 0.75rem !important;
     line-height: 1.4 !important;
   }
-  
+
   /* Reduce button padding on very small screens */
   .btn-primary {
     padding: 0.5rem 0.75rem !important;
@@ -374,10 +431,16 @@ table {
   .min-h-screen {
     min-height: 100vh;
   }
-  
+
   /* Reduce vertical spacing in landscape */
-  .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
-  .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+  /* .py-8 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  .py-6 {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  } */
 }
 
 /* High DPI screens */
@@ -395,10 +458,18 @@ table {
 }
 
 /* Specific overrides for common problematic elements */
-.max-w-7xl { max-width: min(80rem, 95vw) !important; }
-.max-w-6xl { max-width: min(72rem, 95vw) !important; }
-.max-w-5xl { max-width: min(64rem, 95vw) !important; }
-.max-w-4xl { max-width: min(56rem, 95vw) !important; }
+.max-w-7xl {
+  max-width: min(80rem, 95vw) !important;
+}
+.max-w-6xl {
+  max-width: min(72rem, 95vw) !important;
+}
+.max-w-5xl {
+  max-width: min(64rem, 95vw) !important;
+}
+.max-w-4xl {
+  max-width: min(56rem, 95vw) !important;
+}
 
 /* Force all text to wrap */
 * {
@@ -413,7 +484,10 @@ table {
 
 /* Grid and flex emergency constraints */
 .grid {
-  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)) !important;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(250px, 100%), 1fr)
+  ) !important;
 }
 
 .flex {
@@ -421,109 +495,88 @@ table {
 }
 
 /* Button and form constraints */
-button, input, select, textarea {
+button,
+input,
+select,
+textarea {
   max-width: 100% !important;
   min-width: 0 !important;
 }
 
 /* Image and media final safety net */
-img, video, iframe, embed, object, svg {
+img,
+video,
+iframe,
+embed,
+object,
+svg {
   max-width: 100% !important;
   height: auto !important;
 }
 
-/* ===========================================
-   SPA SECTION STYLES (merged from spa-styles.css)
-   =========================================== */
-
-/* SPA Section Styles */
-.section-container {
-  position: relative;
-  scroll-margin-top: 80px; /* Account for fixed header */
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  /* Ensure sections don't overflow horizontally */
-  overflow-x: hidden;
-  width: 100%;
+/* SPA SECTION STYLES were merged from spa-styles.css earlier. */
+.text-responsive-base {
+  font-size: 1.125rem;
 }
-
-.section-container:not(#home) {
-  padding-top: 2rem;
+.text-responsive-lg {
+  font-size: 1.25rem;
 }
-
-/* Responsive section padding */
-@media screen and (max-width: 640px) {
-  .section-container:not(#home) {
-    padding-top: 1rem;
-  }
+.text-responsive-xl {
+  font-size: 1.5rem;
 }
-
-@media screen and (max-width: 480px) {
-  .section-container:not(#home) {
-    padding-top: 0.5rem;
-  }
+.text-responsive-2xl {
+  font-size: 2rem;
 }
-
-/* Smooth section transitions */
-.section-fade-in {
-  animation: sectionFadeIn 0.6s ease-out forwards;
+.text-responsive-3xl {
+  font-size: 2.5rem;
 }
-
-@keyframes sectionFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Navigation indicator */
-.nav-indicator {
-  position: relative;
-}
-
-.nav-indicator::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--primary);
-  transition: width 0.3s ease;
-}
-
-.nav-indicator.active::after {
-  width: 100%;
-}
-.text-responsive-base { font-size: 1.125rem; }
-.text-responsive-lg { font-size: 1.25rem; }
-.text-responsive-xl { font-size: 1.5rem; }
-.text-responsive-2xl { font-size: 2rem; }
-.text-responsive-3xl { font-size: 2.5rem; }
 
 @media (min-width: 640px) {
-  .text-responsive-xs { font-size: 1rem; }
-  .text-responsive-sm { font-size: 1.125rem; }
-  .text-responsive-base { font-size: 1.25rem; }
-  .text-responsive-lg { font-size: 1.5rem; }
-  .text-responsive-xl { font-size: 1.875rem; }
-  .text-responsive-2xl { font-size: 2.25rem; }
-  .text-responsive-3xl { font-size: 3rem; }
+  .text-responsive-xs {
+    font-size: 1rem;
+  }
+  .text-responsive-sm {
+    font-size: 1.125rem;
+  }
+  .text-responsive-base {
+    font-size: 1.25rem;
+  }
+  .text-responsive-lg {
+    font-size: 1.5rem;
+  }
+  .text-responsive-xl {
+    font-size: 1.875rem;
+  }
+  .text-responsive-2xl {
+    font-size: 2.25rem;
+  }
+  .text-responsive-3xl {
+    font-size: 3rem;
+  }
 }
 
 @media (min-width: 1024px) {
-  .text-responsive-xs { font-size: 1.125rem; }
-  .text-responsive-sm { font-size: 1.25rem; }
-  .text-responsive-base { font-size: 1.5rem; }
-  .text-responsive-lg { font-size: 1.875rem; }
-  .text-responsive-xl { font-size: 2.25rem; }
-  .text-responsive-2xl { font-size: 3rem; }
-  .text-responsive-3xl { font-size: 4rem; }
+  .text-responsive-xs {
+    font-size: 1.125rem;
+  }
+  .text-responsive-sm {
+    font-size: 1.25rem;
+  }
+  .text-responsive-base {
+    font-size: 1.5rem;
+  }
+  .text-responsive-lg {
+    font-size: 1.875rem;
+  }
+  .text-responsive-xl {
+    font-size: 2.25rem;
+  }
+  .text-responsive-2xl {
+    font-size: 3rem;
+  }
+  .text-responsive-3xl {
+    font-size: 4rem;
+  }
 }
 
 /* Custom scrollbar */
@@ -572,10 +625,9 @@ img, video, iframe, embed, object, svg {
 
 /* Industrial theme adjustments */
 .industrial-bg {
-  background-image: 
-    linear-gradient(45deg, #64748b 25%, transparent 25%), 
-    linear-gradient(-45deg, #64748b 25%, transparent 25%), 
-    linear-gradient(45deg, transparent 75%, #64748b 75%), 
+  background-image: linear-gradient(45deg, #64748b 25%, transparent 25%),
+    linear-gradient(-45deg, #64748b 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #64748b 75%),
     linear-gradient(-45deg, transparent 75%, #64748b 75%);
   background-size: 20px 20px;
   background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
