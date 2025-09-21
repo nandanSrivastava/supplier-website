@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "lighthouse": "^12.8.2",
     "tailwindcss": "^4"
   }
 }

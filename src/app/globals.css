@@ -209,6 +209,31 @@ table {
   overflow: hidden;
 }
 
+/* Header constraints to prevent overflow on small screens */
+header {
+  --header-max-height: 64px; /* default mobile header height */
+  max-height: var(--header-max-height);
+}
+
+header .container-responsive > div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  header {
+    --header-max-height: 72px;
+  }
+}
+
+/* Ensure overflowing children inside header don't increase layout height */
+header img,
+header button,
+header svg {
+  max-height: calc(var(--header-max-height) - 10px);
+}
+
 /* Animation classes */
 .fade-in {
   animation: fadeIn 0.6s ease-in-out;
@@ -512,6 +537,65 @@ object,
 svg {
   max-width: 100% !important;
   height: auto !important;
+}
+
+/* Hide horizontal scrollbar for better mobile look */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+/* Snap helper spacing */
+.snap-start {
+  scroll-snap-align: start;
+}
+.snap-x {
+  scroll-snap-type: x mandatory;
+}
+.touch-pan-x {
+  touch-action: pan-x;
+}
+
+/* Small-screen UX improvements */
+@media screen and (max-width: 640px) {
+  /* Reduce scroll offset so sections are not hidden under header */
+  html {
+    scroll-padding-top: 56px;
+  }
+
+  /* Make hero account for header height on small screens */
+  .hero-section {
+    min-height: calc(100dvh - 56px) !important;
+    padding-top: 8px !important;
+    padding-bottom: 12px !important;
+  }
+
+  /* Ensure primary CTA and other buttons meet touch target guidelines */
+  .btn-primary,
+  button,
+  .btn {
+    min-height: 44px !important;
+    min-width: 44px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+
+  /* Mobile menu items: larger hit areas */
+  .mobile-menu-container button {
+    padding-top: 14px !important;
+    padding-bottom: 14px !important;
+    font-size: 1rem !important;
+  }
+
+  /* Reduce heavy shadows on mobile for performance */
+  .shadow-2xl,
+  .shadow-lg,
+  .shadow-md {
+    box-shadow: none !important;
+  }
 }
 
 /* SPA SECTION STYLES were merged from spa-styles.css earlier. */

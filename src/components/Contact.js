@@ -44,12 +44,12 @@ const Contact = () => {
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-1 sm:py-3">
-        <div className="w-full max-w-none mx-auto px-1 sm:px-2 text-center">
+      <section className="py-1 text-white bg-gradient-to-r from-blue-600 to-blue-800 sm:py-3">
+        <div className="w-full px-1 mx-auto text-center max-w-none sm:px-2">
           <h1 className="text-xs sm:text-base lg:text-lg font-bold mb-0.5 sm:mb-1 leading-tight">
             Contact Our Experts
           </h1>
-          <p className="text-xs sm:text-sm mx-auto leading-tight opacity-90">
+          <p className="mx-auto text-xs leading-tight sm:text-sm opacity-90">
             Get in touch today!
           </p>
         </div>
@@ -58,19 +58,19 @@ const Contact = () => {
       {/* Contact Form & Info */}
       <section className="py-3 sm:py-4">
         <div className="container-responsive">
-          <div className="grid lg:grid-cols-2 gap-4">
+          <div className="grid gap-4 lg:grid-cols-2">
             
             
             {/* Contact Information */}
             <div className="px-2">
-              <h2 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3">
+              <h2 className="mb-2 text-base font-bold text-gray-900 sm:text-lg sm:mb-3">
                 Get in Touch
               </h2>
               
               <div className="space-y-3">
                 {/* Contact Numbers */}
                 <div>
-                  <h3 className="text-sm font-semibold text-gray-900 mb-2 flex items-center">
+                  <h3 className="flex items-center mb-2 text-sm font-semibold text-gray-900">
                     📞 Contact Numbers
                   </h3>
                   <div className="flex flex-col gap-2">
@@ -91,7 +91,7 @@ const Contact = () => {
 
                 {/* WhatsApp */}
                 <div>
-                  <h3 className="text-sm font-semibold text-gray-900 mb-2 flex items-center">
+                  <h3 className="flex items-center mb-2 text-sm font-semibold text-gray-900">
                     💬 WhatsApp
                   </h3>
                   <div className="flex flex-col gap-2">
@@ -116,7 +116,7 @@ const Contact = () => {
 
                 {/* Email */}
                 <div>
-                  <h3 className="text-sm font-semibold text-gray-900 mb-2 flex items-center">
+                  <h3 className="flex items-center mb-2 text-sm font-semibold text-gray-900">
                     📧 Email
                   </h3>
                   <div className="flex flex-col gap-2">
@@ -127,7 +127,7 @@ const Contact = () => {
                       Info@IndustrialSparesMarketplace.com
                     </a>
                     <a
-                      href="mailto:IndustrialSparesMarketplace@Gmail.com"
+                      href="mailto:IndustrialSparesMarketplace@gmail.com"
                       className="border border-blue-600 text-blue-600 px-3 py-1.5 rounded font-semibold text-center hover:bg-blue-600 hover:text-white transition-all duration-200 text-xs sm:text-sm break-all"
                     >
                       IndustrialSparesMarketplace@gmail.com
@@ -137,14 +137,14 @@ const Contact = () => {
 
                 {/* Address */}
                 <div>
-                  <h3 className="text-sm font-semibold text-gray-900 mb-2 flex items-center">
+                  <h3 className="flex items-center mb-2 text-sm font-semibold text-gray-900">
                     📍 Visit Our Office
                   </h3>
-                  <div className="bg-gray-50 p-3 rounded border text-xs sm:text-sm text-gray-700">
+                  <div className="p-3 text-xs text-gray-700 border rounded bg-gray-50 sm:text-sm">
                     <p className="font-medium text-gray-900">Industrial Spares Marketplace</p>
-                    <p>Safdarjung Enclave, New Delhi,</p>
-                    <p>Delhi, India - 110029</p>
-                    <p className="mt-1 text-blue-600 font-medium">Let's have a Cup of Tea/Coffee! ☕</p>
+                    <p>88, Safdarjung Enclave, Humayanpur,</p>
+                    <p>New Delhi, Delhi, India - 110029</p>
+                    <p className="mt-1 font-medium text-blue-600">Let's have a Cup of Tea/Coffee! ☕</p>
                   </div>
                 </div>
 
@@ -152,7 +152,7 @@ const Contact = () => {
                 <div className="pt-2">
                   <button
                     onClick={() => window.dispatchEvent(new CustomEvent('showSection', { detail: 'quote' }))}
-                    className="w-full bg-orange-600 text-white px-3 py-2 rounded font-semibold text-center hover:bg-orange-700 transition-all duration-200 text-xs sm:text-sm"
+                    className="w-full px-3 py-2 text-xs font-semibold text-center text-white transition-all duration-200 bg-orange-600 rounded hover:bg-orange-700 sm:text-sm"
                   >
                     🚀 Request Quick Quote
                   </button>

@@ -101,7 +101,7 @@ const Services = () => {
   const active = services[activeService];
 
   return (
-    <section className="flex items-center min-h-screen overflow-hidden bg-gradient-to-b from-gray-50 to-white">
+    <section className="flex items-start w-full overflow-hidden bg-gradient-to-b from-gray-50 to-white py-8">
       <div className="w-full py-12 container-responsive">
         <div className="max-w-6xl mx-auto">
           <div className="px-4 mb-6 text-center">
@@ -176,7 +176,7 @@ const Services = () => {
 
               {/* Details */}
               <div className="p-6 bg-white rounded-lg shadow-sm md:col-span-2">
-                <div className="flex items-start justify-between">
+                <div className="flex flex-col md:flex-row items-start justify-between">
                   <div>
                     <h4 className="text-xl font-bold text-gray-900 sm:text-2xl">
                       {active.title}
@@ -211,20 +211,20 @@ const Services = () => {
                     </ul>
                   </div>
 
-                  <div className="flex-col items-end hidden ml-4 sm:flex">
-                    <div className="p-3 mb-3 text-center bg-gray-100 rounded">
+                  <div className="w-full md:w-40 md:ml-4 mt-4 md:mt-0 flex md:flex-col gap-2">
+                    <div className="p-3 text-center bg-gray-100 rounded flex-1">
                       <div className="text-xs text-gray-500">Cost</div>
                       <div className="text-lg font-bold text-gray-900">
                         {active.stats.cost}
                       </div>
                     </div>
-                    <div className="p-3 mb-3 text-center bg-gray-100 rounded">
+                    <div className="p-3 text-center bg-gray-100 rounded flex-1">
                       <div className="text-xs text-gray-500">Avg Lead</div>
                       <div className="text-lg font-bold text-gray-900">
                         {active.stats.time}
                       </div>
                     </div>
-                    <div className="p-3 text-center bg-gray-100 rounded">
+                    <div className="p-3 text-center bg-gray-100 rounded flex-1">
                       <div className="text-xs text-gray-500">Suppliers</div>
                       <div className="text-lg font-bold text-gray-900">
                         {active.stats.suppliers}
@@ -236,13 +236,13 @@ const Services = () => {
                 <div className="flex items-center mt-6 space-x-3">
                   <a
                     href="#contact"
-                    className="inline-block px-4 py-2 text-sm font-semibold text-white bg-blue-600 rounded-md shadow"
+                    className="inline-block w-full md:w-auto px-4 py-3 text-sm font-semibold text-white bg-blue-600 rounded-md shadow text-center"
                   >
                     Request Quote
                   </a>
                   <a
                     href="#contact"
-                    className="inline-block text-sm text-gray-600 underline"
+                    className="inline-block w-full md:w-auto text-sm text-gray-600 underline text-center"
                   >
                     Contact Sales
                   </a>

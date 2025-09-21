@@ -35,7 +35,10 @@ const Hero = ({ setActiveSection }) => {
   };
 
   return (
-    <section className="relative max-w-full min-h-screen overflow-hidden hero-section">
+    <section
+      className="relative max-w-full overflow-hidden hero-section"
+      style={{ minHeight: "60vh" }}
+    >
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 max-w-full">
         <div
@@ -62,7 +65,10 @@ const Hero = ({ setActiveSection }) => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex items-center min-h-screen px-1 pt-16 pb-4 xs:px-2 sm:px-0">
+      <div
+        className="relative z-10 flex items-center w-full px-1 pt-20 pb-4 xs:px-2 sm:px-0"
+        style={{ minHeight: "inherit" }}
+      >
         <div className="w-full max-w-full container-responsive">
           <div className="w-full max-w-5xl mx-auto text-center">
             <div
