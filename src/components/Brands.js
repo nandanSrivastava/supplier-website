@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { useRef } from "react";
 
 const Brands = () => {
   const brands = [
@@ -60,6 +60,8 @@ const Brands = () => {
     logo: `/brands/${file}`,
   }));
 
+  const scrollRef = useRef(null);
+
   return (
     <div className="py-0.5 sm:py-1">
       {/* Compact Hero */}
@@ -84,7 +86,7 @@ const Brands = () => {
                 aria-label="Previous brands"
                 className="p-2 mr-2 rounded shadow prev-brand bg-white/80 focus-ring"
                 onClick={() => {
-                  const el = document.querySelector("#brands-scroll");
+                  const el = scrollRef.current;
                   if (el) el.scrollBy({ left: -200, behavior: "smooth" });
                 }}
               >
@@ -92,21 +94,23 @@ const Brands = () => {
               </button>
               <div
                 id="brands-scroll"
+                ref={scrollRef}
                 className="flex gap-3 px-1 py-2 overflow-x-auto no-scrollbar snap-x snap-mandatory touch-pan-x"
                 style={{ WebkitOverflowScrolling: "touch" }}
               >
-                {brands.map((brand, index) => (
+                {brands.map((brand) => (
                   <div
-                    key={index}
+                    key={brand.name}
                     className="flex items-center justify-center flex-shrink-0 p-2 bg-white rounded-lg snap-start"
                     style={{ width: 96 }}
                   >
-                    <Image
-                      src={brand.logo}
+                    <img
+                      src={encodeURI(brand.logo)}
                       alt={brand.name}
                       width={80}
                       height={80}
-                      sizes="80px"
+                      loading="lazy"
+                      decoding="async"
                       className="object-contain w-20 h-20"
                     />
                   </div>
@@ -116,7 +120,7 @@ const Brands = () => {
                 aria-label="Next brands"
                 className="p-2 ml-2 rounded shadow next-brand bg-white/80 focus-ring"
                 onClick={() => {
-                  const el = document.querySelector("#brands-scroll");
+                  const el = scrollRef.current;
                   if (el) el.scrollBy({ left: 200, behavior: "smooth" });
                 }}
               >
@@ -128,17 +132,18 @@ const Brands = () => {
           {/* Desktop: grid */}
           <div className="hidden lg:block">
             <div className="grid items-center grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-              {brands.map((brand, index) => (
+              {brands.map((brand) => (
                 <div
-                  key={index}
+                  key={brand.name}
                   className="flex items-center justify-center p-2 backshadow"
                 >
-                  <Image
-                    src={brand.logo}
+                  <img
+                    src={encodeURI(brand.logo)}
                     alt={brand.name}
                     width={112}
                     height={112}
-                    sizes="(min-width: 1024px) 112px, 80px"
+                    loading="lazy"
+                    decoding="async"
                     className="object-contain w-24 h-24 md:w-28 md:h-28"
                   />
                 </div>
