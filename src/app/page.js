@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, memo } from "react";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import About from "../components/About";
@@ -13,7 +13,7 @@ import Quote from "../components/Quote";
 import Footer from "../components/Footer";
 import ScrollProgress from "../components/ScrollProgress";
 
-export default function Home() {
+const Home = memo(() => {
   const [activeSection, setActiveSection] = useState("home");
   const sectionRefs = useRef({});
   const observerRef = useRef(null);
@@ -57,7 +57,7 @@ export default function Home() {
     return () => window.removeEventListener("hashchange", handleHashChange);
   }, [scrollToSection]);
 
-  // Set up intersection observer for automatic section detection
+  // Set up intersection observer for automatic section detection (optimized)
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -97,7 +97,7 @@ export default function Home() {
         observerRef.current.disconnect();
       }
     };
-  }, [activeSection]);
+  }, []); // Remove activeSection dependency to prevent recreation
 
   // Enhanced setActiveSection that updates URL hash
   const handleSetActiveSection = useCallback(
@@ -208,4 +208,8 @@ export default function Home() {
       <Footer />
     </div>
   );
-}
+});
+
+Home.displayName = "Home";
+
+export default Home;

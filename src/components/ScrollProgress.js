@@ -1,9 +1,30 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
+
+// Throttle utility function
+const throttle = (func, delay) => {
+  let timeoutId;
+  let lastExecTime = 0;
+  return function (...args) {
+    const currentTime = Date.now();
+    
+    if (currentTime - lastExecTime > delay) {
+      func.apply(this, args);
+      lastExecTime = currentTime;
+    } else {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        func.apply(this, args);
+        lastExecTime = Date.now();
+      }, delay - (currentTime - lastExecTime));
+    }
+  };
+};
 
 const ScrollProgress = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const rafRef = useRef(null);
 
   const updateScrollProgress = useCallback(() => {
     const scrollTop = window.scrollY;
@@ -12,11 +33,27 @@ const ScrollProgress = () => {
     setScrollProgress(scrollPercent * 100);
   }, []);
 
+  // Throttled scroll handler using requestAnimationFrame
+  const throttledUpdateScrollProgress = useCallback(
+    throttle(() => {
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
+      rafRef.current = requestAnimationFrame(updateScrollProgress);
+    }, 16), // ~60fps
+    [updateScrollProgress]
+  );
+
   useEffect(() => {
-    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    window.addEventListener('scroll', throttledUpdateScrollProgress, { passive: true });
     updateScrollProgress(); // Initial call
-    return () => window.removeEventListener('scroll', updateScrollProgress);
-  }, [updateScrollProgress]);
+    return () => {
+      window.removeEventListener('scroll', throttledUpdateScrollProgress);
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
+    };
+  }, [throttledUpdateScrollProgress, updateScrollProgress]);
 
   return (
     <div 

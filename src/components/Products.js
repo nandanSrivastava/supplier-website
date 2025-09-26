@@ -1,8 +1,65 @@
 "use client";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo, useCallback } from "react";
 
-const Products = () => {
+// Optimized ProductImageComponent with shimmer loading and error handling
+const ProductImageComponent = memo(({ product, isCarousel = false }) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
+
+  const handleLoad = useCallback(() => {
+    setIsLoading(false);
+  }, []);
+
+  const handleError = useCallback(() => {
+    setIsLoading(false);
+    setHasError(true);
+  }, []);
+
+  if (hasError) {
+    return (
+      <div className={`bg-gray-100 rounded-lg flex items-center justify-center ${
+        isCarousel ? "w-full h-80" : "w-full h-32 md:h-40"
+      }`}>
+        <div className="text-center text-gray-400">
+          <span className="text-sm">{product.name}</span>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="relative">
+      {isLoading && (
+        <div className={`absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded-lg animate-pulse ${
+          isCarousel ? "w-full h-80" : "w-full h-32 md:h-40"
+        }`}>
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
+        </div>
+      )}
+      <Image
+        src={encodeURI(product.image)}
+        alt={product.name}
+        width={isCarousel ? 1200 : 400}
+        height={isCarousel ? 800 : 240}
+        sizes={isCarousel ? "100vw" : "(max-width: 768px) 100vw, 400px"}
+        className={`object-cover transition-opacity duration-300 ${
+          isLoading ? "opacity-0" : "opacity-100"
+        } ${isCarousel ? "w-full h-80 rounded-lg" : "w-full h-32 md:h-40 rounded"}`}
+        style={isCarousel ? { minHeight: "320px", maxHeight: "400px" } : { minHeight: "128px", maxHeight: "200px" }}
+        loading="lazy"
+        placeholder="blur"
+        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaUMk6objMpSlKKEgghI//Z"
+        onLoad={handleLoad}
+        onError={handleError}
+      />
+    </div>
+  );
+});
+
+ProductImageComponent.displayName = "ProductImageComponent";
+
+const Products = memo(() => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const products = [
@@ -64,17 +121,18 @@ const Products = () => {
     },
   ];
 
-  const nextSlide = () => {
+  // Optimized carousel handlers with useCallback
+  const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % products.length);
-  };
+  }, [products.length]);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev - 1 + products.length) % products.length);
-  };
+  }, [products.length]);
 
-  const goToSlide = (index) => {
+  const goToSlide = useCallback((index) => {
     setCurrentSlide(index);
-  };
+  }, []);
 
   // Auto-play carousel (optional) - stable interval
   useEffect(() => {
@@ -116,15 +174,9 @@ const Products = () => {
                 style={{ boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)" }}
               >
                 {/* Fixed size image */}
-                <Image
-                  src={products[currentSlide].image}
-                  alt={products[currentSlide].name}
-                  width={1200}
-                  height={800}
-                  sizes="100vw"
-                  className="object-cover w-full mb-6 rounded-lg h-80"
-                  style={{ minHeight: "320px", maxHeight: "400px" }}
-                />
+                <div className="mb-6">
+                  <ProductImageComponent product={products[currentSlide]} isCarousel={true} />
+                </div>
                 <div className="hidden text-xl">
                   {products[currentSlide].icon}
                 </div>
@@ -186,21 +238,13 @@ const Products = () => {
 
           {/* Desktop Grid */}
           <div className="hidden gap-4 md:grid md:grid-cols-3 lg:grid-cols-4 md:gap-6">
-            {products.map((product, index) => (
+            {products.map((product) => (
               <div
-                key={index}
+                key={product.id}
                 className="p-4 text-center transition-shadow bg-white rounded-lg shadow-sm md:p-6 hover:shadow-md backshadow"
               >
                 <div className="mb-3">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    width={400}
-                    height={240}
-                    sizes="(max-width: 768px) 100vw, 400px"
-                    className="object-cover w-full h-32 mb-2 rounded md:h-40"
-                    style={{ minHeight: "128px", maxHeight: "200px" }}
-                  />
+                  <ProductImageComponent product={product} isCarousel={false} />
                   <div className="hidden text-sm">{product.icon}</div>
                 </div>
                 <h4 className="mb-2 text-base font-semibold leading-tight text-gray-900 md:text-lg">
@@ -216,6 +260,8 @@ const Products = () => {
       </div>
     </div>
   );
-};
+});
+
+Products.displayName = "Products";
 
 export default Products;

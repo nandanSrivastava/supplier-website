@@ -1,6 +1,8 @@
 "use client";
 
-const About = () => {
+import { memo } from "react";
+
+const About = memo(() => {
   const values = [
     { num: 1, title: "Customer Delight & Statisfaction." },
     { num: 2, title: "Integrity (Trust through Ethics)." },
@@ -13,46 +15,51 @@ const About = () => {
   };
 
   return (
-    <div>
-      {/* Compact Hero */}
-      <div className="py-3 text-white bg-gradient-to-r from-blue-600 to-blue-700 sm:py-4">
-        <div className="max-w-5xl px-4 mx-auto text-center">
-          <h1 className="mb-1 text-xl font-bold sm:text-2xl lg:text-3xl">
+    <div className="py-3 sm:py-4">
+      {/* Enhanced Hero */}
+      <div className="py-8 text-white bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 sm:py-12">
+        <div className="max-w-6xl px-4 mx-auto text-center">
+          <h1 className="mb-4 text-2xl font-bold sm:text-3xl lg:text-4xl">
             About Industrial Solutions
           </h1>
-          <p className="text-sm sm:text-base opacity-90">
-            Dedicated engineers resolving global industrial procurement
-            challenges
+          <p className="text-base sm:text-lg opacity-90 max-w-3xl mx-auto leading-relaxed">
+            Dedicated engineers resolving global industrial procurement challenges with innovative solutions
           </p>
         </div>
       </div>
 
-      {/* Vision & Mission - Centered Paragraphs */}
-      <div className="max-w-4xl px-4 py-4 mx-auto text-center">
-        <div className="space-y-4">
-          <div>
-            <div className="flex items-center justify-center mb-2">
-              <span className="mr-2 text-lg">🌟</span>
-              <h3 className="text-base font-bold text-blue-900">Vision</h3>
+      {/* Vision & Mission */}
+      <div className="py-8 bg-gradient-to-br from-gray-50 to-gray-100">
+        <div className="max-w-6xl px-4 mx-auto">
+          <div className="grid gap-6 md:grid-cols-2">
+            {/* Vision Card */}
+            <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300">
+              <div className="flex items-center mb-4">
+                <span className="mr-3 text-3xl">🌟</span>
+                <h3 className="text-2xl font-bold text-blue-900">Vision</h3>
+              </div>
+              <p className="text-lg leading-relaxed text-gray-700">
+                Unlocking & Solving Global Industrial Procurements.
+              </p>
             </div>
-            <p className="max-w-2xl mx-auto text-sm leading-relaxed text-gray-700">
-              Unlocking & Solving Global Industrial Procurements.
-            </p>
+
+            {/* Mission Card */}
+            <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300">
+              <div className="flex items-center mb-4">
+                <span className="mr-3 text-3xl">🎯</span>
+                <h3 className="text-2xl font-bold text-green-900">Mission</h3>
+              </div>
+              <p className="text-lg leading-relaxed text-gray-700">
+                To Make Global Industrial Procurements Reliable, Cheaper, Easier,
+                Risk & Hassle-Free With End to End Logistics Support.
+              </p>
+            </div>
           </div>
 
-          <div>
-            <div className="flex items-center justify-center mb-2">
-              <span className="mr-2 text-lg">🎯</span>
-              <h3 className="text-base font-bold text-green-900">Mission</h3>
-            </div>
-            <p className="max-w-xl mx-auto text-sm leading-relaxed text-gray-700">
-              To Make Global Industrial Procurements Reliable, Cheaper, Easier,
-              Risk & Hassle-Free With End to End Logistics Support.{" "}
-            </p>
-          </div>
-          {/* Group description added per user request */}
-          <div>
-            <p className="max-w-3xl mx-auto mt-2 text-sm font-semibold leading-relaxed text-gray-700">
+          {/* Group Description */}
+          <div className="mt-8 bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+            <h3 className="mb-4 text-xl font-bold text-gray-900 text-center">Who We Are</h3>
+            <p className="text-lg leading-relaxed text-gray-700 text-center max-w-4xl mx-auto">
               We are a group of engineers, aiming to unlock and solve global
               industrial procurements with reliability, cheaper prices, risk-
               and hassle-free processes, and end-to-end logistics support —
@@ -63,54 +70,59 @@ const About = () => {
         </div>
       </div>
 
-      {/* Compact Values (refined) */}
-      <div className="py-6 bg-gray-50">
+      {/* Core Values */}
+      <div className="py-8 bg-white">
         <div className="max-w-6xl px-4 mx-auto">
-          <h2 className="mb-6 text-xl font-bold text-center">
-            Our Core Values
-          </h2>
+          <div className="text-center mb-8">
+            <h2 className="mb-4 text-2xl font-bold text-gray-900 sm:text-3xl">
+              Our Core Values
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              The principles that guide our commitment to excellence
+            </p>
+          </div>
 
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((value) => (
               <div
                 key={value.num}
-                className="flex items-center gap-3 p-2 bg-white rounded-lg border border-gray-100 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 transition duration-150"
+                className="group bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="flex-shrink-0">
-                  <div className="flex items-center justify-center w-8 h-8 text-xs font-semibold text-white bg-blue-600 rounded-full">
+                <div className="flex items-center mb-4">
+                  <div className="flex items-center justify-center w-12 h-12 text-lg font-bold text-white bg-blue-600 rounded-xl group-hover:bg-blue-700 transition-colors duration-300">
                     {value.num}
                   </div>
                 </div>
-
-                <div className="flex-1 min-w-0">
-                  <h4 className="text-sm font-medium text-gray-900">
-                    {value.title}
-                  </h4>
-                </div>
+                <h4 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
+                  {value.title}
+                </h4>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Compact CTA */}
-      <div className="py-3 text-black">
-        <div className="max-w-5xl px-4 mx-auto text-center">
-          <h3 className="mb-2 text-base font-bold">
+      {/* CTA Section */}
+      <div className="py-8 bg-gradient-to-r from-blue-600 to-blue-700">
+        <div className="max-w-6xl px-4 mx-auto text-center">
+          <h3 className="mb-4 text-2xl font-bold text-white sm:text-3xl">
             Ready to Transform Your Procurement?
           </h3>
-          <div className="flex flex-col justify-center gap-2 sm:flex-row">
-            <button
-              onClick={() => handleCTAClick("quote")}
-              className="border border-blue-600 bg-blue-600 text-white px-4 py-1.5 rounded text-sm font-semibold hover:bg-blue-700 transition-colors"
-            >
-              Request Quote
-            </button>
-          </div>
+          <p className="mb-6 text-lg text-blue-100 max-w-2xl mx-auto">
+            Let's discuss how we can help optimize your industrial procurement process
+          </p>
+          <button
+            onClick={() => handleCTAClick("quote")}
+            className="px-8 py-4 text-lg font-bold text-blue-700 bg-white rounded-xl hover:bg-blue-50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+          >
+            Request Quote
+          </button>
         </div>
       </div>
     </div>
   );
-};
+});
+
+About.displayName = "About";
 
 export default About;

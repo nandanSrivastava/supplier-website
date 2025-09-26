@@ -1,7 +1,27 @@
 "use client";
 
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import Image from "next/image";
+
+// Throttle utility function
+const throttle = (func, delay) => {
+  let timeoutId;
+  let lastExecTime = 0;
+  return function (...args) {
+    const currentTime = Date.now();
+    
+    if (currentTime - lastExecTime > delay) {
+      func.apply(this, args);
+      lastExecTime = currentTime;
+    } else {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        func.apply(this, args);
+        lastExecTime = Date.now();
+      }, delay - (currentTime - lastExecTime));
+    }
+  };
+};
 
 const Header = ({ activeSection, setActiveSection }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,11 +40,12 @@ const Header = ({ activeSection, setActiveSection }) => {
     []
   );
 
-  // Handle scroll effect
+  // Handle scroll effect with throttling
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = throttle(() => {
       setIsScrolled(window.scrollY > 20);
-    };
+    }, 16); // ~60fps
+    
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -156,7 +177,7 @@ const Header = ({ activeSection, setActiveSection }) => {
               {/* Mobile menu button */}
               <button
                 onClick={toggleMobileMenu}
-                className="flex items-center justify-center p-1 text-white transition-colors border border-transparent rounded-md w-9 h-9 lg:hidden hover:text-blue-200 hover:bg-blue-700 focus-ring mobile-menu-trigger sm:p-2 sm:w-auto sm:h-auto"
+                className="flex items-center justify-center p-1 text-white transition-all duration-300 border border-white/30 rounded-xl w-9 h-9 lg:hidden hover:text-white hover:bg-black/20 hover:border-white/50 focus:outline-none focus:ring-2 focus:ring-white/30 mobile-menu-trigger sm:p-2 sm:w-auto sm:h-auto backdrop-blur-lg bg-black/20"
                 aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                 aria-expanded={isMenuOpen}
                 aria-controls="mobile-menu"
@@ -198,7 +219,7 @@ const Header = ({ activeSection, setActiveSection }) => {
           }`}
           style={{ transformOrigin: "top" }}
         >
-          <div className="bg-transparent shadow-none">
+          <div className="bg-gray-900/95 backdrop-blur-md shadow-xl border-t border-gray-700/20">
             <div className="py-6 container-responsive">
               <nav className="space-y-2">
                 {navItems.map((item, index) => (
@@ -209,8 +230,8 @@ const Header = ({ activeSection, setActiveSection }) => {
                       index + 1
                     } text-sm tracking-wide shadow-md ${
                       activeSection === item.key
-                        ? "text-white bg-blue-600 border-l-4 border-white"
-                        : "text-blue-100 hover:text-white hover:bg-blue-500/80 bg-transparent"
+                        ? "text-white bg-gray-800/80 border-l-4 border-white backdrop-blur-sm"
+                        : "text-gray-300 hover:text-white hover:bg-gray-700/60 bg-transparent backdrop-blur-sm"
                     }`}
                     aria-current={
                       activeSection === item.key ? "page" : undefined
@@ -222,7 +243,7 @@ const Header = ({ activeSection, setActiveSection }) => {
                 <div className="pt-6 mt-6">
                   <button
                     onClick={handleQuoteClick}
-                    className="justify-center w-full px-5 py-3 text-sm font-bold text-blue-700 transition-all duration-200 bg-white border-2 border-blue-600 shadow-lg rounded-xl hover:bg-blue-100"
+                    className="justify-center w-full px-5 py-3 text-sm font-bold text-gray-900 transition-all duration-200 bg-white/95 backdrop-blur-sm border-2 border-gray-300 shadow-lg rounded-xl hover:bg-white hover:shadow-xl"
                   >
                     Request For Quote
                   </button>
@@ -233,10 +254,10 @@ const Header = ({ activeSection, setActiveSection }) => {
         </div>
       </header>
 
-      {/* Mobile menu overlay */}
+      {/* Mobile menu overlay with enhanced blur */}
       {isMenuOpen && (
         <div
-          className="fixed inset-0 z-40 bg-black/40 backdrop-blur-md lg:hidden animate-fadeIn"
+          className="fixed inset-0 z-40 bg-black/50 backdrop-blur-lg lg:hidden animate-fadeIn"
           onClick={() => setIsMenuOpen(false)}
           aria-hidden="true"
         />

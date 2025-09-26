@@ -576,6 +576,23 @@ svg {
   touch-action: pan-x;
 }
 
+/* Mobile brands scroll optimization */
+#brands-scroll {
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
+  overscroll-behavior: contain;
+  scroll-behavior: smooth;
+}
+
+#brands-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+#brands-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Small-screen UX improvements */
 @media screen and (max-width: 640px) {
   /* Reduce scroll offset so sections are not hidden under header */

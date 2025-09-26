@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, memo } from "react";
 
-const Quote = () => {
+const Quote = memo(() => {
   const [formData, setFormData] = useState({
     // Company Information
     companyName: "",
@@ -211,31 +211,31 @@ const Quote = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
-      {/* Header */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-3">
-        <div className="max-w-6xl mx-auto px-3 text-center">
-          <h1 className="text-lg font-bold mb-1">Request a Quote</h1>
-          <p className="text-sm max-w-2xl mx-auto">
-            Get a customized quote for your industrial procurement needs. Our
-            experts will analyze your requirements and provide competitive
-            pricing.
+    <div className="py-3 sm:py-4">
+      {/* Enhanced Hero */}
+      <div className="py-8 text-white bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 sm:py-12">
+        <div className="max-w-6xl px-4 mx-auto text-center">
+          <h1 className="mb-4 text-2xl font-bold sm:text-3xl lg:text-4xl">
+            Request a Quote
+          </h1>
+          <p className="text-base sm:text-lg opacity-90 max-w-3xl mx-auto leading-relaxed">
+            Get a customized quote for your industrial procurement needs. Our experts will analyze your requirements and provide competitive pricing.
           </p>
         </div>
-      </section>
+      </div>
 
       {/* Quote Form */}
-      <section className="flex-1 py-3">
-        <div className="max-w-4xl mx-auto px-3">
-          <form onSubmit={handleSubmit} className="space-y-3">
+      <div className="py-8 bg-gradient-to-br from-gray-50 to-gray-100">
+        <div className="max-w-6xl px-4 mx-auto">
+          <form onSubmit={handleSubmit} className="space-y-8">
             {/* Company Information */}
-            <div className="bg-gray-50 rounded-lg p-3 backshadow">
-              <h2 className="text-base font-bold text-gray-900 mb-2">
+            <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+              <h2 className="text-xl font-bold text-gray-900 mb-6">
                 Company Information
               </h2>
-              <div className="grid md:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
                     Company Name *
                   </label>
                   <input
@@ -244,11 +244,11 @@ const Quote = () => {
                     required
                     value={formData.companyName}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-300"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
                     Industry *
                   </label>
                   <select
@@ -256,7 +256,7 @@ const Quote = () => {
                     required
                     value={formData.industry}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-300"
                   >
                     <option value="">Select Industry</option>
                     {industries.map((industry) => (
@@ -267,7 +267,7 @@ const Quote = () => {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
                     Contact Person *
                   </label>
                   <input
@@ -276,11 +276,11 @@ const Quote = () => {
                     required
                     value={formData.contactPerson}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-300"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
                     Email Address *
                   </label>
                   <input
@@ -289,11 +289,11 @@ const Quote = () => {
                     required
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-300"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
                     Phone Number *
                   </label>
                   <input
@@ -302,11 +302,11 @@ const Quote = () => {
                     required
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-300"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
                     Country *
                   </label>
                   <input
@@ -315,7 +315,7 @@ const Quote = () => {
                     required
                     value={formData.country}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-300"
                   />
                 </div>
               </div>
@@ -436,9 +436,11 @@ const Quote = () => {
             )}
           </form>
         </div>
-      </section>
+      </div>
     </div>
   );
-};
+});
+
+Quote.displayName = "Quote";
 
 export default Quote;
