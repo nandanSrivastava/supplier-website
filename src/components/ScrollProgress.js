@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from "react";
 
 // Throttle utility function
 const throttle = (func, delay) => {
@@ -8,7 +8,7 @@ const throttle = (func, delay) => {
   let lastExecTime = 0;
   return function (...args) {
     const currentTime = Date.now();
-    
+
     if (currentTime - lastExecTime > delay) {
       func.apply(this, args);
       lastExecTime = currentTime;
@@ -28,27 +28,31 @@ const ScrollProgress = () => {
 
   const updateScrollProgress = useCallback(() => {
     const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const docHeight =
+      document.documentElement.scrollHeight - window.innerHeight;
     const scrollPercent = docHeight > 0 ? scrollTop / docHeight : 0;
     setScrollProgress(scrollPercent * 100);
   }, []);
 
   // Throttled scroll handler using requestAnimationFrame
   const throttledUpdateScrollProgress = useCallback(
-    throttle(() => {
-      if (rafRef.current) {
-        cancelAnimationFrame(rafRef.current);
-      }
-      rafRef.current = requestAnimationFrame(updateScrollProgress);
-    }, 16), // ~60fps
+    () =>
+      throttle(() => {
+        if (rafRef.current) {
+          cancelAnimationFrame(rafRef.current);
+        }
+        rafRef.current = requestAnimationFrame(updateScrollProgress);
+      }, 16), // ~60fps
     [updateScrollProgress]
   );
 
   useEffect(() => {
-    window.addEventListener('scroll', throttledUpdateScrollProgress, { passive: true });
+    window.addEventListener("scroll", throttledUpdateScrollProgress, {
+      passive: true,
+    });
     updateScrollProgress(); // Initial call
     return () => {
-      window.removeEventListener('scroll', throttledUpdateScrollProgress);
+      window.removeEventListener("scroll", throttledUpdateScrollProgress);
       if (rafRef.current) {
         cancelAnimationFrame(rafRef.current);
       }
@@ -56,11 +60,11 @@ const ScrollProgress = () => {
   }, [throttledUpdateScrollProgress, updateScrollProgress]);
 
   return (
-    <div 
+    <div
       className="fixed top-0 left-0 w-full h-1 bg-blue-600 z-50 transition-all duration-150 ease-out origin-left"
-      style={{ 
+      style={{
         transform: `scaleX(${scrollProgress / 100})`,
-        transformOrigin: 'left'
+        transformOrigin: "left",
       }}
       role="progressbar"
       aria-valuenow={Math.round(scrollProgress)}

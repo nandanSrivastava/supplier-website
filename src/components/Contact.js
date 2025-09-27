@@ -150,8 +150,12 @@ const Contact = memo(() => {
                     <p className="font-bold text-gray-900 text-lg mb-2">
                       Industrial Spares Marketplace
                     </p>
-                    <p className="text-base mb-1">88, Safdarjung Enclave, Humayanpur,</p>
-                    <p className="text-base mb-3">New Delhi, Delhi, India - 110029</p>
+                    <p className="text-base mb-1">
+                      88, Safdarjung Enclave, Humayanpur,
+                    </p>
+                    <p className="text-base mb-3">
+                      New Delhi, Delhi, India - 110029
+                    </p>
                     <p className="font-semibold text-blue-600 text-base">
                       Let&apos;s have a Cup of Tea/Coffee! ☕
                     </p>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback, memo } from "react";
+import React, { useState, useEffect, useRef, useCallback, memo } from "react";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import About from "../components/About";
@@ -55,7 +55,7 @@ const Home = memo(() => {
     // Listen for hash changes
     window.addEventListener("hashchange", handleHashChange);
     return () => window.removeEventListener("hashchange", handleHashChange);
-  }, [scrollToSection]);
+  }, [scrollToSection, activeSection]);
 
   // Set up intersection observer for automatic section detection (optimized)
   useEffect(() => {
@@ -97,7 +97,7 @@ const Home = memo(() => {
         observerRef.current.disconnect();
       }
     };
-  }, []); // Remove activeSection dependency to prevent recreation
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps -- Remove activeSection dependency to prevent recreation
 
   // Enhanced setActiveSection that updates URL hash
   const handleSetActiveSection = useCallback(

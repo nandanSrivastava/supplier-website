@@ -1,6 +1,6 @@
 "use client";
 
-import { memo } from "react";
+import React, { memo } from "react";
 
 const About = memo(() => {
   const values = [
@@ -23,7 +23,8 @@ const About = memo(() => {
             About Industrial Solutions
           </h1>
           <p className="text-base sm:text-lg opacity-90 max-w-3xl mx-auto leading-relaxed">
-            Dedicated engineers resolving global industrial procurement challenges with innovative solutions
+            Dedicated engineers resolving global industrial procurement
+            challenges with innovative solutions
           </p>
         </div>
       </div>
@@ -50,15 +51,17 @@ const About = memo(() => {
                 <h3 className="text-2xl font-bold text-green-900">Mission</h3>
               </div>
               <p className="text-lg leading-relaxed text-gray-700">
-                To Make Global Industrial Procurements Reliable, Cheaper, Easier,
-                Risk & Hassle-Free With End to End Logistics Support.
+                To Make Global Industrial Procurements Reliable, Cheaper,
+                Easier, Risk & Hassle-Free With End to End Logistics Support.
               </p>
             </div>
           </div>
 
           {/* Group Description */}
           <div className="mt-8 bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-            <h3 className="mb-4 text-xl font-bold text-gray-900 text-center">Who We Are</h3>
+            <h3 className="mb-4 text-xl font-bold text-gray-900 text-center">
+              Who We Are
+            </h3>
             <p className="text-lg leading-relaxed text-gray-700 text-center max-w-4xl mx-auto">
               We are a group of engineers, aiming to unlock and solve global
               industrial procurements with reliability, cheaper prices, risk-
@@ -109,7 +112,9 @@ const About = memo(() => {
             Ready to Transform Your Procurement?
           </h3>
           <p className="mb-6 text-lg text-blue-100 max-w-2xl mx-auto">
-            Let's discuss how we can help optimize your industrial procurement process
+            {
+              "Let's discuss how we can help optimize your industrial procurement process"
+            }
           </p>
           <button
             onClick={() => handleCTAClick("quote")}
