@@ -82,10 +82,11 @@ const Brands = memo(() => {
           <div className="lg:hidden">
             <div
               id="brands-scroll"
-              className="flex gap-3 px-1 py-2 overflow-x-auto no-scrollbar snap-x snap-mandatory"
+              className="flex gap-3 py-2 overflow-x-auto no-scrollbar"
               style={{ 
                 WebkitOverflowScrolling: "touch",
-                overscrollBehavior: "contain"
+                paddingLeft: "20px",
+                paddingRight: "20px"
               }}
             >
               {brands.map((brand) => (
@@ -127,10 +128,8 @@ const ImageComponent = memo(({ brand, isMobile = false }) => {
   if (hasError) {
     return (
       <div
-        className={`flex items-center justify-center flex-shrink-0 p-2 bg-gray-100 rounded-lg ${
-          isMobile ? "snap-start" : ""
-        }`}
-        style={isMobile ? { width: 96 } : {}}
+        className="flex items-center justify-center flex-shrink-0 p-2 bg-gray-100 rounded-lg"
+        style={isMobile ? { width: 100 } : {}}
       >
         <div className="flex items-center justify-center w-20 h-20 text-gray-400">
           <span className="text-xs text-center">{brand.name}</span>
@@ -141,13 +140,11 @@ const ImageComponent = memo(({ brand, isMobile = false }) => {
 
   return (
     <div
-      className={`flex items-center justify-center flex-shrink-0 p-2 bg-white rounded-lg ${
-        isMobile ? "snap-start" : ""
-      }`}
-       style={isMobile ? { 
-         width: 96,
-         userSelect: "none"
-       } : {}}
+      className="flex items-center justify-center flex-shrink-0 p-2 bg-white rounded-lg"
+      style={isMobile ? { 
+        width: 100,
+        userSelect: "none"
+      } : {}}
     >
       <div className="relative">
         {isLoading && (

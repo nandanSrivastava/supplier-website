@@ -579,8 +579,6 @@ svg {
 /* Mobile brands scroll optimization */
 #brands-scroll {
   -webkit-overflow-scrolling: touch;
-  touch-action: pan-x;
-  overscroll-behavior: contain;
   scroll-behavior: smooth;
 }
 
