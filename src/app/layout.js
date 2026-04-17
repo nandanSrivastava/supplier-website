@@ -35,7 +35,8 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        {/* {children} */}
+        <h1>Page Not Found</h1>
       </body>
     </html>
   );
